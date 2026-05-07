@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Dra. Daniela Gayoso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --slate:       #9ea9bb;
+    --slate-light: #c8d0db;
+    --slate-pale:  #eaecf1;
+    --slate-dark:  #5b6880;
+    --navy:        #2e3240;
+    --cream:       #edf0f4;
+    --linen:       #e4e8ee;
+    --warm-white:  #f5f6f8;
+    --text-mid:    #4a5260;
+    --text-light:  #7a8494;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Jost',sans-serif; background:var(--warm-white); color:var(--navy); overflow-x:hidden; }
+
+  /* NAV */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(245,246,248,0.96); backdrop-filter:blur(10px);
+    padding:16px 60px; display:flex; justify-content:space-between; align-items:center;
+    box-shadow:0 1px 24px rgba(46,50,64,0.07);
+  }
+  .nav-logo { font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:500; letter-spacing:0.06em; color:var(--navy); text-decoration:none; }
+  .nav-links { display:flex; gap:36px; list-style:none; align-items:center; }
+  .nav-links a { font-size:0.76rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-mid); text-decoration:none; transition:color 0.3s; }
+  .nav-links a:hover { color:var(--slate-dark); }
+  .nav-links a.active { color:var(--slate-dark); border-bottom:1px solid var(--slate); padding-bottom:2px; }
+  .nav-cta { color:var(--slate-dark) !important; }
+
+  /* HERO BLOG */
+  .blog-hero {
+    background: var(--slate);
+    padding: 130px 60px 70px;
+    position: relative;
+    overflow: hidden;
+  }
+  .blog-hero::before {
+    content: 'Blog';
+    position: absolute;
+    right: 60px; bottom: -20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.07);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+  .blog-hero-inner { max-width: 1100px; }
+  .blog-hero-label {
+    font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65); margin-bottom: 16px;
+    opacity:0; transform:translateY(16px); animation:fadeUp 0.7s 0.2s forwards;
+  }
+  .blog-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 5vw, 4.2rem);
+    font-weight: 300; line-height: 1.1; color: white;
+    opacity:0; transform:translateY(20px); animation:fadeUp 0.8s 0.4s forwards;
+  }
+  .blog-hero-sub {
+    font-size: 1rem; font-weight: 300; line-height: 1.8;
+    color: rgba(255,255,255,0.68); max-width: 520px; margin-top: 18px;
+    opacity:0; transform:translateY(16px); animation:fadeUp 0.7s 0.6s forwards;
+  }
+
+  /* BLOG GRID */
+  .blog-main {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 60px 60px 100px;
+  }
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .blog-card {
+    background: white;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s;
+  }
+  .blog-card.visible { opacity: 1; transform: translateY(0); }
+  .blog-card:hover { box-shadow: 0 18px 44px rgba(46,50,64,0.1); transform: translateY(-5px); }
+  .blog-thumb { height: 210px; position: relative; overflow: hidden; }
+  .blog-thumb-bg { width: 100%; height: 100%; transition: transform 0.5s; }
+  .blog-card:hover .blog-thumb-bg { transform: scale(1.04); }
+  .bt-1 { background: linear-gradient(135deg,#9ea9bb,#5b6880); }
+  .bt-2 { background: linear-gradient(135deg,#8899aa,#6a7888); }
+  .bt-3 { background: linear-gradient(135deg,#7a90a8,#5b6e84); }
+  .bt-4 { background: linear-gradient(135deg,#7a8898,#5b6880); }
+  .blog-thumb-icon {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .blog-body { padding: 26px 22px 28px; }
+  .blog-tag { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--slate-dark); margin-bottom: 8px; }
+  .blog-title { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 500; line-height: 1.3; color: var(--navy); margin-bottom: 10px; }
+  .blog-excerpt { font-size: 0.85rem; line-height: 1.72; color: var(--text-light); font-weight: 300; }
+  .blog-read-more { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate-dark); transition: gap 0.2s; }
+  .blog-card:hover .blog-read-more { gap: 10px; }
+
+  /* DIVIDER */
+  .divider { width: 44px; height: 2px; background: linear-gradient(90deg, var(--slate), transparent); margin: 22px 0; }
+
+  /* BUTTONS */
+  .btn-primary { display:inline-flex; align-items:center; gap:9px; padding:14px 28px; background:var(--slate-dark); color:white; text-decoration:none; font-size:0.77rem; letter-spacing:0.12em; text-transform:uppercase; transition:background 0.3s,transform 0.25s; border:none; cursor:pointer; }
+  .btn-primary:hover { background:#4a5570; transform:translateY(-2px); }
+  .btn-outline { display:inline-flex; align-items:center; gap:9px; padding:14px 28px; border:1px solid var(--slate); color:var(--slate-dark); text-decoration:none; font-size:0.77rem; letter-spacing:0.12em; text-transform:uppercase; transition:all 0.3s; }
+  .btn-outline:hover { border-color:var(--slate-dark); background:var(--slate-pale); }
+
+  /* POST VIEW */
+  #post-view { display:none; min-height:100vh; background:var(--warm-white); }
+  .post-page { display:none; }
+  .post-page.active { display:block; }
+  .post-nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(245,246,248,0.96); backdrop-filter:blur(8px);
+    box-shadow:0 1px 20px rgba(46,50,64,0.07);
+    padding:15px 60px; display:flex; align-items:center; justify-content:space-between;
+  }
+  .post-back { display:inline-flex; align-items:center; gap:9px; font-size:0.74rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-mid); background:none; border:none; cursor:pointer; transition:color 0.3s; }
+  .post-back:hover { color:var(--slate-dark); }
+  .post-hero { height:320px; margin-top:62px; }
+  .post-content { max-width:720px; margin:0 auto; padding:56px 40px 100px; }
+  .post-meta { display:flex; align-items:center; gap:14px; margin-bottom:18px; }
+  .post-tag-inline { font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--slate-dark); background:var(--slate-pale); padding:4px 10px; }
+  .post-read { font-size:0.75rem; color:var(--text-light); }
+  .post-title { font-family:'Cormorant Garamond',serif; font-size:clamp(1.9rem,3.8vw,3rem); font-weight:400; line-height:1.15; color:var(--navy); }
+  .post-divider { width:44px; height:2px; background:linear-gradient(90deg,var(--slate),transparent); margin:22px 0 30px; }
+  .post-body p { font-size:1.03rem; line-height:1.93; color:var(--text-mid); font-weight:300; margin-bottom:22px; }
+  .post-body strong { font-weight:500; color:var(--navy); }
+  .post-body em { font-style:italic; color:var(--slate-dark); }
+  .post-cta-box { margin-top:44px; padding:32px 36px; background:var(--slate-pale); border-left:3px solid var(--slate); }
+  .post-cta-box p { font-size:0.95rem; color:var(--text-mid); margin-bottom:18px; line-height:1.65; }
+
+  /* FOOTER */
+  footer { background:var(--navy); color:rgba(250,249,246,0.46); padding:60px 60px 40px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:40px; }
+  .footer-brand { font-family:'Cormorant Garamond',serif; font-size:1.22rem; color:white; font-weight:500; letter-spacing:0.04em; margin-bottom:9px; }
+  .footer-sub { font-size:0.74rem; letter-spacing:0.07em; line-height:1.8; }
+  footer h5 { font-size:0.66rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--slate-light); margin-bottom:13px; }
+  footer ul { list-style:none; }
+  footer ul li { font-size:0.82rem; margin-bottom:7px; }
+  footer ul li a { color:rgba(250,249,246,0.46); text-decoration:none; transition:color 0.3s; }
+  footer ul li a:hover { color:white; }
+  .footer-bottom { grid-column:1/-1; border-top:1px solid rgba(255,255,255,0.07); padding-top:20px; font-size:0.69rem; text-align:center; }
+
+  /* MODAL */
+  .modal-overlay { display:none; position:fixed; inset:0; background:rgba(46,50,64,0.65); z-index:200; backdrop-filter:blur(5px); align-items:center; justify-content:center; }
+  .modal-overlay.active { display:flex; }
+  .modal { background:var(--warm-white); max-width:490px; width:90%; padding:44px; position:relative; animation:fadeUp 0.35s ease; }
+  .modal-close { position:absolute; top:16px; right:20px; background:none; border:none; font-size:1.35rem; cursor:pointer; color:var(--text-light); }
+  .modal h3 { font-family:'Cormorant Garamond',serif; font-size:1.72rem; margin-bottom:8px; color:var(--navy); }
+  .modal p { font-size:0.87rem; color:var(--text-mid); line-height:1.7; margin-bottom:12px; }
+  .modal-options { display:flex; flex-direction:column; gap:10px; margin-top:20px; }
+  .modal-option { display:flex; justify-content:space-between; align-items:center; padding:14px 17px; border:1px solid var(--linen); cursor:pointer; transition:all 0.2s; text-decoration:none; color:inherit; }
+  .modal-option:hover { border-color:var(--slate); background:var(--slate-pale); }
+  .modal-option-title { font-size:0.87rem; font-weight:500; color:var(--navy); }
+  .modal-option-meta { font-size:0.72rem; color:var(--text-light); margin-top:2px; }
+  .modal-option-arrow { color:var(--slate-dark); }
+
+
+  /* MAGAZINE FORMAT */
+  .post-lead { font-size:1.18rem; line-height:1.85; color:var(--navy); font-weight:300; margin-bottom:32px; border-left:3px solid var(--slate); padding-left:20px; }
+  .post-h2 { font-family:'Cormorant Garamond',serif; font-size:1.65rem; font-weight:500; color:var(--navy); margin:44px 0 16px; letter-spacing:0.01em; }
+  .post-h2::before { content:''; display:block; width:28px; height:1px; background:var(--slate); margin-bottom:12px; }
+  .post-quote { font-family:'Cormorant Garamond',serif; font-size:1.45rem; font-weight:300; font-style:italic; line-height:1.55; color:var(--slate-dark); border:none; padding:32px 0; margin:36px 0; border-top:1px solid var(--slate-light); border-bottom:1px solid var(--slate-light); text-align:center; }
+  .post-list { list-style:none; padding:0; margin:20px 0 28px; display:flex; flex-direction:column; gap:13px; }
+  .post-list li { font-size:1.02rem; line-height:1.78; color:var(--text-mid); font-weight:300; padding-left:22px; position:relative; }
+  .post-list li::before { content:'—'; position:absolute; left:0; color:var(--slate); font-weight:400; }
+  .post-list li em { font-style:italic; color:var(--slate-dark); }
+  .post-pilares { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin:28px 0 36px; }
+  .post-pilar { background:var(--slate-pale); padding:26px 22px; border-top:2px solid var(--slate); }
+  .post-pilar-nombre { font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-style:italic; color:var(--slate-dark); margin-bottom:4px; }
+  .post-pilar-titulo { font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--navy); font-weight:500; margin-bottom:12px; }
+  .post-pilar p { font-size:0.86rem; line-height:1.72; color:var(--text-mid); font-weight:300; margin:0; }
+  .post-pilar p em { font-style:italic; color:var(--slate-dark); }
+  .post-closing { font-size:1.1rem; line-height:1.8; color:var(--navy); font-weight:300; margin-top:32px; }
+  @media (max-width:700px) {
+    .post-pilares { grid-template-columns:1fr; }
+    .post-quote { font-size:1.2rem; }
+    .post-lead { font-size:1.05rem; }
+  }
+
+
+  /* CTA TEST ESPECIAL */
+  .post-cta-test { background:var(--navy); border-left:none; padding:0; }
+  .post-cta-test-inner { display:flex; align-items:center; justify-content:space-between; gap:32px; padding:36px 40px; }
+  .post-cta-test-label { font-size:0.62rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--slate-light); margin-bottom:8px; }
+  .post-cta-test-title { font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:white; line-height:1.2; margin-bottom:12px; }
+  .post-cta-test-title em { font-style:italic; color:var(--slate-light); }
+  .post-cta-test-text p { font-size:0.88rem; line-height:1.7; color:rgba(250,249,246,0.62); margin:0; }
+  .post-cta-test-text p em { font-style:italic; color:var(--slate-light); }
+  .btn-cta-test { white-space:nowrap; background:var(--slate); flex-shrink:0; }
+  .btn-cta-test:hover { background:var(--slate-dark); }
+  @media (max-width:700px) {
+    .post-cta-test-inner { flex-direction:column; align-items:flex-start; gap:20px; }
+  }
+
+
+  /* NUMBERED LIST */
+  .post-list-num { list-style:none; padding:0; margin:20px 0 28px; display:flex; flex-direction:column; gap:22px; counter-reset:paso; }
+  .post-list-num li { padding-left:52px; position:relative; counter-increment:paso; }
+  .post-list-num li::before { content:counter(paso); position:absolute; left:0; top:0; width:32px; height:32px; background:var(--slate); color:white; font-size:0.78rem; font-weight:500; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .post-list-num .post-list-titulo { display:block; font-size:0.92rem; font-weight:500; color:var(--navy); margin-bottom:6px; letter-spacing:0.01em; }
+  .post-list-num .post-list-titulo em { font-style:italic; color:var(--slate-dark); font-weight:400; }
+  .post-list-num p { font-size:0.9rem; line-height:1.75; color:var(--text-mid); font-weight:300; margin:0; }
+  .post-list-num p em { font-style:italic; color:var(--slate-dark); }
+
+  /* CTA DEPURACIÓN */
+  .post-cta-depu { background:var(--slate-pale); border-left:none; padding:0; overflow:hidden; }
+  .post-cta-depu-inner { padding:40px; border-top:3px solid var(--slate); }
+  .post-cta-depu-tag { font-size:0.62rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--slate-dark); margin-bottom:12px; }
+  .post-cta-depu-title { font-family:'Cormorant Garamond',serif; font-size:1.75rem; font-weight:400; color:var(--navy); line-height:1.2; margin-bottom:14px; }
+  .post-cta-depu-title em { font-style:italic; color:var(--slate-dark); }
+  .post-cta-depu-desc { font-size:0.9rem; line-height:1.72; color:var(--text-mid); font-weight:300; margin-bottom:24px; }
+  .post-cta-depu-desc em { font-style:italic; color:var(--slate-dark); }
+
+  @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+
+  /* RESPONSIVE */
+  @media (max-width:900px) {
+    nav { padding:14px 24px; }
+    .blog-hero { padding:110px 24px 60px; }
+    .filter-bar { padding:0 24px; overflow-x:auto; }
+    .blog-main { padding:40px 24px 80px; }
+    .blog-grid { grid-template-columns:1fr 1fr; }
+    footer { grid-template-columns:1fr; padding:40px 24px; }
+    .post-nav { padding:13px 24px; }
+    .post-content { padding:36px 22px 70px; }
+    .post-hero { height:220px; }
+    .nav-links { display:none; }
+  }
+  @media (max-width:600px) {
+    .blog-grid { grid-template-columns:1fr; }
+    .blog-hero::before { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://dradanigayoso.com.ar" class="nav-logo">Dra. Daniela Gayoso</a>
+  <ul class="nav-links">
+    <li><a href="https://dradanigayoso.com.ar#que-es">Medicina</a></li>
+    <li><a href="https://dradanigayoso.com.ar#sobre-mi">Sobre m&#237;</a></li>
+    <li><a href="https://dradanigayoso.com.ar#servicios">Servicios</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="#" onclick="openModal('consulta')" class="nav-cta">Consulta</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="blog-hero" id="blog-top">
+  <div class="blog-hero-inner">
+    <p class="blog-hero-label">Dra. Daniela Gayoso</p>
+    <h1 class="blog-hero-title">Recursos<br>para tu salud</h1>
+    <p class="blog-hero-sub">Informaci&#243;n, fundamentos y herramientas de la medicina Ayurveda para incorporar a tu vida diaria.</p>
+  </div>
+</div>
+
+<!-- GRILLA -->
+<div class="blog-main" id="blog-main">
+  <div class="blog-grid" id="blog-grid">
+
+    <div class="blog-card" data-cat="fundamentos" onclick="openPost('ayurveda-intro')">
+      <div class="blog-thumb">
+        <div class="blog-thumb-bg bt-1"></div>
+        <div class="blog-thumb-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.9"><path d="M12 22V10"/><path d="M12 10C12 6 8 3 4 4c0 4 3 7 8 6"/><path d="M12 10c0-4 4-7 8-6 0 4-3 7-8 6"/></svg></div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-tag">Fundamentos</div>
+        <div class="blog-date">12 de abril, 2025</div>
+        <div class="blog-title">Breve introducci&#243;n al Ayurveda</div>
+        <p class="blog-excerpt">El sistema m&#233;dico milenario de la India que entiende al ser humano como parte inseparable del cosmos y los ciclos naturales.</p>
+        <span class="blog-read-more">Leer &#8594;</span>
+      </div>
+    </div>
+
+    <div class="blog-card" data-cat="constitucion" onclick="openPost('constitucion')">
+      <div class="blog-thumb">
+        <div class="blog-thumb-bg bt-2"></div>
+        <div class="blog-thumb-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.9"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="11"/></svg></div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-tag">Constituci&#243;n</div>
+        <div class="blog-date">28 de abril, 2025</div>
+        <div class="blog-title"><em>Prakruti:</em> El Mapa Sagrado de tu Constituci&#243;n &#218;nica</div>
+        <p class="blog-excerpt">Tu constituci&#243;n &#250;nica &#8212;tu <em>Prakruti</em>&#8212; es el mapa sagrado que el Ayurveda usa para dise&#241;ar un camino de salud completamente personalizado.</p>
+        <span class="blog-read-more">Leer &#8594;</span>
+      </div>
+    </div>
+
+    <div class="blog-card" data-cat="digestion" onclick="openPost('agni-ama')">
+      <div class="blog-thumb">
+        <div class="blog-thumb-bg bt-3"></div>
+        <div class="blog-thumb-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.9"><path d="M12 2c0 6-7 8-7 14a7 7 0 0014 0c0-6-7-8-7-14z"/></svg></div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-tag">Digesti&#243;n y vitalidad</div>
+        <div class="blog-date">10 de mayo, 2025</div>
+        <div class="blog-title">El Equilibrio Vital: Salud, <em>Agni</em> y el Secreto de la Longevidad</div>
+        <p class="blog-excerpt">La salud verdadera es alcanzar <em>Swastha:</em> estar plenamente establecidx en unx mismx. El <em>Agni</em> es el guardián de esa vitalidad.</p>
+        <span class="blog-read-more">Leer &#8594;</span>
+      </div>
+    </div>
+
+    <div class="blog-card" data-cat="slowlife" onclick="openPost('slow-life')">
+      <div class="blog-thumb">
+        <div class="blog-thumb-bg bt-4"></div>
+        <div class="blog-thumb-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.9"><path d="M12 2C8 2 5 6 5 10c0 5 7 12 7 12s7-7 7-12c0-4-3-8-7-8z"/><circle cx="12" cy="10" r="2"/></svg></div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-tag">Slow life</div>
+        <div class="blog-date">24 de mayo, 2025</div>
+        <div class="blog-title">Recursos slow life para tu salud</div>
+        <p class="blog-excerpt">Herramientas concretas del Ayurveda para incorporar a tu vida cotidiana: rutinas, hierbas y pr&#225;cticas de presencia.</p>
+        <span class="blog-read-more">Leer &#8594;</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- POSTS -->
+<div id="post-view">
+
+  <article class="post-page" data-post="ayurveda-intro">
+    <div class="post-hero bt-1"></div>
+    <div class="post-content">
+      <div class="post-meta"><span class="post-tag-inline">Fundamentos</span><span class="post-read">10 min de lectura</span><span class="post-read">12 de abril, 2025</span></div>
+      <h1 class="post-title">Ayurveda: El arte de recordar qui&#233;nes somos</h1>
+      <div class="post-divider"></div>
+      <div class="post-body">
+
+        <p class="post-lead">El Ayurveda abarca saberes primales de la vida. Su nombre, de origen s&#225;nscrito, une las palabras <em>Ayuh</em> (vida) y <em>Veda</em> (ciencia o verdad), defini&#233;ndose como <strong>&#8220;La ciencia de la vida&#8221;.</strong></p>
+
+        <h2 class="post-h2">Un poco de historia</h2>
+
+        <p>Se cuenta que estos saberes no fueron creados por el ser humano, sino canalizados por sabios durante profundos estados meditativos hace miles de a&#241;os: los <strong>Rishis,</strong> ori&#250;ndos de un pueblo de la antigua India a orillas del r&#237;o Indo. Para este pueblo, la salud ya era parte de la cultura cotidiana. Integraban la higiene, el ejercicio, la dieta y la disciplina personal como actos de devoci&#243;n en su camino religioso.</p>
+
+        <p>Desde entonces, el Ayurveda se ha transmitido a trav&#233;s de los siglos como un sistema de sanaci&#243;n completo que naci&#243; para responder a una pregunta fundamental: <strong>&#191;c&#243;mo aliviar el sufrimiento de la vida?</strong></p>
+
+        <blockquote class="post-quote">&#8220;De transmisi&#243;n oral en sus inicios, las ense&#241;anzas se han pasado de maestro a disc&#237;pulo, quienes se situaban a la misma altura para que los conocimientos sagrados fueran realmente aprehendidos, de coraz&#243;n a coraz&#243;n.&#8221;</blockquote>
+
+        <p>M&#225;s adelante, los primeros registros sobre los principios ayurv&#233;dicos &#8212;que datan de entre el 1500 y el 1000 a.&thinsp;C. aproximadamente&#8212; se plasmaron en los <strong>Vedas,</strong> tratados antiguos de la tradici&#243;n v&#233;dica. Aqu&#237;, los conocimientos fueron escritos en forma de <em>sutra:</em> palabra semilla, peque&#241;as c&#225;psulas de saber cuyo estudio implicaba que el aprendiz las desplegara para comprender la profundidad de lo transmitido.</p>
+
+        <p>Hoy en d&#237;a, el Ayurveda nos brinda herramientas para el cuidado y el mantenimiento de la salud en pos de construir vitalidad, creatividad y longevidad, honrando el prop&#243;sito de cada ser y respetando los ritmos vitales tanto propios como del todo del que somos parte.</p>
+
+        <h2 class="post-h2">Las bases fundamentales del sistema m&#233;dico ayurv&#233;dico</h2>
+
+        <ul class="post-list">
+          <li>Buscar el equilibrio cuerpo-mente-esp&#237;ritu.</li>
+          <li>Conocimiento de la constituci&#243;n individual (respetando los <em>doshas</em> de la forma &#250;nica en que nos habitan a cada unx: <em>Vata,</em> <em>Pitta</em> y <em>Kapha</em>) y el dise&#241;o de rutinas diarias y estacionales orientadas a la misma.</li>
+          <li>Detectar los desequilibrios que llevan a la enfermedad y la dolencia, entendi&#233;ndolos en contexto y trabajando sobre la causa ra&#237;z.</li>
+          <li>Gestionar h&#225;bitos para evitar la acumulaci&#243;n de toxinas (<em>ama</em>), que representan la base de la enfermedad.</li>
+          <li>Mantener saludable el fuego digestivo (<em>agni</em>) para que la sabidur&#237;a del propio cuerpo tienda al equilibrio.</li>
+          <li>No perder de vista el prop&#243;sito propio de la vida (<em>dharma</em>).</li>
+          <li>Vivir en armon&#237;a con la naturaleza de la cual somos parte (incluyendo a otras personas, otros seres y el universo que habitamos).</li>
+          <li>Construir <em>sattva:</em> la energ&#237;a de la claridad y el equilibrio en todas las cosas.</li>
+        </ul>
+
+        <h2 class="post-h2">Los tres pilares del tratamiento ayurv&#233;dico</h2>
+
+        <div class="post-pilares">
+          <div class="post-pilar">
+            <div class="post-pilar-nombre"><em>Ahara</em></div>
+            <div class="post-pilar-titulo">Pautas de Alimentaci&#243;n</div>
+            <p>Adecuadas seg&#250;n la constituci&#243;n individual, desequilibrios actuales, edad, contexto y estaci&#243;n del a&#241;o.</p>
+          </div>
+          <div class="post-pilar">
+            <div class="post-pilar-nombre"><em>Vihara</em></div>
+            <div class="post-pilar-titulo">H&#225;bitos y pr&#225;cticas</div>
+            <p>Desde tipo de ejercicio y hora del d&#237;a recomendada hasta masajes, rutinas de limpieza, meditaci&#243;n, <em>pranayamas</em> (ejercicios de respiraci&#243;n) y conocimiento del reloj d&#243;shico.</p>
+          </div>
+          <div class="post-pilar">
+            <div class="post-pilar-nombre"><em>Aushadhi</em></div>
+            <div class="post-pilar-titulo">Tratamiento espec&#237;fico</div>
+            <p>Uso de plantas y hongos con distintas formas de administraci&#243;n, y uso de especias y sabores espec&#237;ficos dentro de la alimentaci&#243;n.</p>
+          </div>
+        </div>
+
+        <blockquote class="post-quote">&#8220;Practicar Ayurveda es, en esencia, volver a confiar en las fuerzas de la naturaleza y en nuestra propia capacidad de equilibrio.&#8221;</blockquote>
+
+        <p class="post-closing">El Ayurveda es, ante todo, un camino de <strong>autoconocimiento.</strong></p>
+
+      </div>
+      <div class="post-cta-box"><p>&#191;Quer&#233;s incorporar el Ayurveda a tu vida? En consulta exploramos tu constituci&#243;n &#250;nica y dise&#241;amos un plan personalizado.</p><a href="#" class="btn-primary" onclick="closePost();openModal('consulta');return false;">Agend&#225; una consulta</a></div>
+    </div>
+  </article>
+
+  <article class="post-page" data-post="constitucion">
+    <div class="post-hero bt-2"></div>
+    <div class="post-content">
+      <div class="post-meta"><span class="post-tag-inline">Constituci&#243;n</span><span class="post-read">8 min de lectura</span><span class="post-read">28 de abril, 2025</span></div>
+      <h1 class="post-title"><em>Prakruti:</em> El Mapa Sagrado de tu Constituci&#243;n &#218;nica</h1>
+      <div class="post-divider"></div>
+      <div class="post-body">
+
+        <p class="post-lead">El camino hacia el equilibrio empieza por reconocer nuestro dise&#241;o original. Para el Ayurveda, cada ser es una combinaci&#243;n irrepetible de energ&#237;as vitales llamadas <em>Doshas:</em> <em>Vata,</em> <em>Pitta</em> y <em>Kapha.</em></p>
+
+        <p>Esta proporci&#243;n &#250;nica, como una huella digital, con la que nacemos se denomina <em>Prakruti.</em> Nuestro <em>Prakruti</em> es como nuestro mapa sagrado, el cual debemos respetar para mantener nuestra salud y vitalidad.</p>
+
+        <h2 class="post-h2">Los Tres Pilares de la Energ&#237;a Humana</h2>
+
+        <p>Los <em>Doshas</em> no son etiquetas est&#225;ticas, sino fuerzas din&#225;micas que rigen diferentes funciones en nuestro cuerpo-universo. Cada ser posee los 3 <em>doshas,</em> pero en una proporci&#243;n y distribuci&#243;n &#250;nica.</p>
+
+        <div class="post-pilares">
+          <div class="post-pilar">
+            <div class="post-pilar-nombre"><em>Vata</em></div>
+            <div class="post-pilar-titulo">Espacio + Aire</div>
+            <p>Es el principio del movimiento. Gobierna nuestro sistema nervioso, la respiraci&#243;n y la comunicaci&#243;n celular. Sus cualidades son la ligereza, el fr&#237;o y la sutileza.</p>
+          </div>
+          <div class="post-pilar">
+            <div class="post-pilar-nombre"><em>Pitta</em></div>
+            <div class="post-pilar-titulo">Fuego + Agua</div>
+            <p>Es la energ&#237;a de la transformaci&#243;n. Rige nuestro metabolismo, la digesti&#243;n de los alimentos y la capacidad de &#8220;digerir&#8221; emociones y pensamientos. Se caracteriza por el calor y la agudeza.</p>
+          </div>
+          <div class="post-pilar">
+            <div class="post-pilar-nombre"><em>Kapha</em></div>
+            <div class="post-pilar-titulo">Agua + Tierra</div>
+            <p>Es la fuerza de la estructura y la cohesi&#243;n. Aporta estabilidad, lubricaci&#243;n y firmeza a nuestros tejidos y articulaciones. Sus cualidades son la pesadez, la calma y la untuosidad.</p>
+          </div>
+        </div>
+
+        <p>El Ayurveda no propone soluciones gen&#233;ricas, sino rutinas diarias y estacionales orientadas a tu constituci&#243;n particular. La salud florece cuando aprendemos a detectar los desequilibrios de forma temprana, trabajando siempre sobre la causa ra&#237;z y no solo sobre el s&#237;ntoma.</p>
+
+        <blockquote class="post-quote">&#8220;Cuando nos alejamos de nuestra naturaleza original, entramos en un proceso de desequilibrio que puede acumular toxinas (<em>Ama</em>) y debilitar nuestro fuego sagrado (<em>Agni</em>).&#8221;</blockquote>
+
+        <p class="post-closing">&#191;C&#243;mo habitan estas energ&#237;as en vos hoy? Conocer tu constituci&#243;n es el primer paso para vivir en armon&#237;a con la naturaleza, respetando tus propios ritmos y el prop&#243;sito &#250;nico de tu vida (<em>Dharma</em>).</p>
+
+      </div>
+
+      <div class="post-cta-box post-cta-test">
+        <div class="post-cta-test-inner">
+          <div class="post-cta-test-text">
+            <p class="post-cta-test-label">Herramienta</p>
+            <h3 class="post-cta-test-title">Descubr&#237; tu constituci&#243;n <em>Ayurv&#233;dica</em></h3>
+            <p>Respond&#233; el test y conoc&#233; cu&#225;l es tu <em>Prakruti</em> &#8212;la combinaci&#243;n &#250;nica de <em>doshas</em> que te define&#8212; como primer paso hacia tu equilibrio.</p>
+          </div>
+          <a href="https://www.casa-urdimbre.com.ar/test" target="_blank" class="btn-primary btn-cta-test">Hacer el test &#8594;</a>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <article class="post-page" data-post="agni-ama">
+    <div class="post-hero bt-3"></div>
+    <div class="post-content">
+      <div class="post-meta"><span class="post-tag-inline">Digesti&#243;n y vitalidad</span><span class="post-read">10 min de lectura</span><span class="post-read">10 de mayo, 2025</span></div>
+      <h1 class="post-title">El Equilibrio Vital: Salud, <em>Agni</em> y el Secreto de la Longevidad</h1>
+      <div class="post-divider"></div>
+      <div class="post-body">
+
+        <p class="post-lead">En la cosmovisi&#243;n del Ayurveda, la salud no es simplemente la ausencia de enfermedad. Ser saludable es alcanzar el estado de <em>Swastha,</em> que se ha traducido como &#8220;establecidx dentro de unx mismx&#8221; o &#8220;totalmente feliz dentro de unx mismx&#8221;.</p>
+
+        <p>Para lograr esta plenitud, nuestro dise&#241;o biol&#243;gico depende de una danza armoniosa entre el cuerpo f&#237;sico (<em>Sharira</em>), la mente (<em>Satva</em>) y el alma (<em>Atman</em>). El eje central que sostiene este equilibrio es nuestra capacidad para procesar la vida, representada por el concepto de <em>Agni.</em></p>
+
+        <h2 class="post-h2"><em>Agni:</em> El Guardi&#225;n de nuestra Vitalidad</h2>
+
+        <p>El <em>Agni</em> es nuestro fuego digestivo, la energ&#237;a calor&#237;fica que rige todo el metabolismo. En Ayurveda, existe una premisa poderosa:</p>
+
+        <blockquote class="post-quote">&#8220;Las personas son tan viejas como lo es su <em>Agni</em>&#8221; &#8212; o como a m&#237; me gusta decirlo: son tan saludables como lo es su <em>agni.</em>&#8221;</blockquote>
+
+        <p>Cuando nuestro fuego es fuerte y sano, el cuerpo funciona con inteligencia:</p>
+
+        <ul class="post-list">
+          <li>Digiere correctamente lo que ingresa.</li>
+          <li>Absorbe y asimila los nutrientes necesarios para nutrir los tejidos (<em>Dhatus</em>).</li>
+          <li>Elimina las impurezas y materiales de excreción de forma eficiente.</li>
+        </ul>
+
+        <p>Cuando el <em>Agni</em> se debilita por h&#225;bitos inadecuados, estr&#233;s o una alimentaci&#243;n incompatible, perdemos la capacidad de transformar lo que recibimos. Es en este momento cuando los alimentos no se digieren bien y se convierten en <em>Ama</em> o toxina: part&#237;culas de desecho no procesadas que se acumulan en el tracto gastrointestinal.</p>
+
+        <p>El <em>Ama</em> es considerado la ra&#237;z de la enfermedad. Su acumulaci&#243;n genera una obstrucci&#243;n que impide que la inteligencia del cuerpo fluya, dando inicio al proceso de enfermedad o <em>Samprapti,</em> que avanza desde la acumulaci&#243;n de <em>doshas</em> desequilibrados y <em>Ama</em> hasta el agravamiento y la manifestaci&#243;n de dolencias f&#237;sicas.</p>
+
+        <h2 class="post-h2">Recomendaciones para encender tu <em>Agni</em></h2>
+
+        <p>Para fortalecer nuestro <em>Agni</em> y evitar que el <em>Ama</em> se apodere de nuestro sistema, podemos integrar peque&#241;os rituales de consciencia en nuestra alimentaci&#243;n diaria:</p>
+
+        <ol class="post-list-num">
+          <li>
+            <span class="post-list-titulo">Com&#233; con hambre real</span>
+            <p>Respetar la se&#241;al del cuerpo asegura que el <em>Agni</em> est&#233; listo para trabajar. Muchas veces estamos desconectadxs de las sensaciones f&#237;sicas y podemos ignorar inconscientemente el hambre. Si no ten&#233;s hambre entrada la ma&#241;ana o incluso llegando al mediod&#237;a, date un tiempo de pausa y afin&#225; las se&#241;ales interoceptivas.</p>
+          </li>
+          <li>
+            <span class="post-list-titulo">Busc&#225; la calidad <em>(Hitbhuka)</em></span>
+            <p>Eleg&#237; alimentos que nutran tu salud y no solo los que tienten tu sabor, prefiriendo siempre productos de estaci&#243;n y m&#237;nimamente procesados.</p>
+          </li>
+          <li>
+            <span class="post-list-titulo">La moderaci&#243;n <em>(Mitbhuka)</em></span>
+            <p>Una raci&#243;n ideal es la que cabe en el cuenco de tus manos; dej&#225; siempre un espacio vac&#237;o en tu est&#243;mago para que el fuego tenga aire para quemar. Si com&#233;s lento es m&#225;s f&#225;cil percibir tu cantidad necesaria; si com&#233;s r&#225;pido puede que com&#225;s de m&#225;s y no te enteres hasta media hora despu&#233;s.</p>
+          </li>
+          <li>
+            <span class="post-list-titulo">Presencia y gratitud</span>
+            <p>Cocinar con buenos pensamientos (<em>Katara</em>) y comer en un ambiente tranquilo (<em>Satsanga</em>) genera la inteligencia digestiva necesaria. Tomarse unos momentos de contemplaci&#243;n antes de empezar a comer trae el <em>Prana</em> y con &#233;l la atenci&#243;n, ajustando al m&#225;ximo tu capacidad digestiva.</p>
+          </li>
+          <li>
+            <span class="post-list-titulo">El movimiento post-digestivo</span>
+            <p>Salir a dar una caminata tranquila despu&#233;s de comer contribuye a una mejor digesti&#243;n y evita que el sistema se estanque.</p>
+          </li>
+        </ol>
+
+        <blockquote class="post-quote">&#8220;Sanar es, en definitiva, aprender a cuidar nuestro fuego interior para que la vida pueda ser plenamente digerida y celebrada.&#8221;</blockquote>
+
+      </div>
+
+      <div class="post-cta-double">
+        <div class="post-cta-half post-cta-half--dark">
+          <div class="post-cta-depu-tag">Pr&#243;ximo programa</div>
+          <h3 class="post-cta-depu-title">Depuraci&#243;n Ayurveda</h3>
+          <p class="post-cta-depu-desc">Los cupos son limitados. Anot&#225;te en la lista de espera para ser notificada cuando se abran nuevas fechas.</p>
+          <a href="https://forms.google.com" target="_blank" class="btn-primary btn-full">Anotarme en la lista de espera &#8594;</a>
+        </div>
+        <div class="post-cta-half post-cta-half--light">
+          <div class="post-cta-depu-tag">Siguiente art&#237;culo</div>
+          <h3 class="post-cta-depu-title post-cta-depu-title--dark">Depuraci&#243;n Ayurveda:<br><em>Limpiar el terreno para recuperar la vitalidad</em></h3>
+          <p class="post-cta-depu-desc post-cta-depu-desc--dark">Entend&#233; los fundamentos del proceso, los s&#237;ntomas del <em>Ama</em> acumulado y por qu&#233; hacerlo en momentos de transici&#243;n estacional.</p>
+          <a href="#" class="btn-outline btn-full" onclick="closePost();openPost('depuracion');return false;">Leer el art&#237;culo &#8594;</a>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <article class="post-page" data-post="slow-life">
+    <div class="post-hero bt-4"></div>
+    <div class="post-content">
+      <div class="post-meta"><span class="post-tag-inline">Slow life</span><span class="post-read">5 min de lectura</span><span class="post-read">24 de mayo, 2025</span></div>
+      <h1 class="post-title">Recursos slow life para tu salud</h1>
+      <div class="post-divider"></div>
+      <div class="post-body">
+        <p>El Ayurveda no es una medicina de crisis: es una medicina de todos los d&#237;as. Sus herramientas m&#225;s poderosas no son las m&#225;s espectaculares, sino las m&#225;s constantes. La <em>dinacharya</em> &#8212;rutina diaria&#8212; es uno de sus pilares fundamentales: despertar antes del amanecer, raspar la lengua, hacer abhyanga, moverse, meditar, comer en horarios regulares.</p>
+        <p>El concepto de <em>slow life</em> resuena naturalmente con esta filosof&#237;a. No se trata de hacer menos, sino de hacer con m&#225;s presencia y coherencia con el propio ritmo. Frente a una cultura que promueve el rendimiento constante, el Ayurveda propone escuchar las se&#241;ales del cuerpo antes de que se conviertan en s&#237;ntomas.</p>
+        <p>Algunos recursos concretos: reducir los est&#237;mulos digitales antes de dormir, comer sin pantallas, salir al sol por la ma&#241;ana, incorporar hierbas adapt&#243;genas como la ashwagandha o el tulsi, y reconocer cu&#225;ndo tu sistema nervioso est&#225; en modo alerta.</p>
+      </div>
+      <div class="post-cta-box"><p>Si quer&#233;s incorporar estas pr&#225;cticas de forma personalizada y sostenible, podemos trabajarlo juntas en consulta.</p><a href="#" class="btn-primary" onclick="closePost();openModal('consulta');return false;">Agend&#225; una consulta</a></div>
+    </div>
+  </article>
+
+  <article class="post-page" data-post="depuracion">
+    <div class="post-hero" style="background:linear-gradient(135deg,#6a7888,#4a5870);"></div>
+    <div class="post-content">
+      <div class="post-meta"><span class="post-tag-inline">Depuraci&#243;n</span><span class="post-read">12 min de lectura</span><span class="post-read">7 de junio, 2025</span></div>
+      <h1 class="post-title">Depuraci&#243;n Ayurveda: Limpiar el terreno para recuperar la vitalidad</h1>
+      <div class="post-divider"></div>
+      <div class="post-body">
+
+        <p class="post-lead">El Ayurveda incluye las pr&#225;cticas de depuraci&#243;n como un pilar esencial del cuidado preventivo. No se trata de un recurso que s&#243;lo utilizamos cuando nos sentimos mal; por el contrario, la medicina ayurv&#233;dica propone realizar estos procesos de limpieza de manera regular, al menos una o dos veces al a&#241;o para mantener la salud y la vitalidad.</p>
+
+        <p>Desde esta mirada, los momentos de transici&#243;n estacional &#8212;como el oto&#241;o y la primavera&#8212; son las ventanas ideales para realizar la depuraci&#243;n. En estos per&#237;odos, la naturaleza cambia y nuestro cuerpo tambi&#233;n atraviesa una transformaci&#243;n profunda; apoyarlo con una desintoxicaci&#243;n consciente permite que la salud sea un lugar cotidiano y no un evento pasajero.</p>
+
+        <h2 class="post-h2">&#191;C&#243;mo puede verse la toxina acumulada <em>(Ama)?</em></h2>
+
+        <p>Muchas veces normalizamos ciertos malestares, pero el cuerpo nos env&#237;a se&#241;ales claras cuando nuestros canales est&#225;n obstruidos. La acumulaci&#243;n de <em>Ama</em> se manifiesta de formas muy concretas:</p>
+
+        <div class="post-sintomas">
+          <div class="post-sintoma">
+            <span class="post-sintoma-titulo">Pesadez constante</span>
+            <p>Un letargo f&#237;sico persistente, incluso al despertar.</p>
+          </div>
+          <div class="post-sintoma">
+            <span class="post-sintoma-titulo">Neblina mental</span>
+            <p>Dificultad para concentrarse o una sensaci&#243;n de &#8220;embotamiento&#8221; y de confusi&#243;n.</p>
+          </div>
+          <div class="post-sintoma">
+            <span class="post-sintoma-titulo">Exceso de toxina en la lengua</span>
+            <p>Una capa blanquecina o amarillenta abundante al levantarse. Mal aliento y dificultad para sentir los sabores del alimento.</p>
+          </div>
+          <div class="post-sintoma">
+            <span class="post-sintoma-titulo">Digesti&#243;n lenta</span>
+            <p>Gases, inflamaci&#243;n abdominal o falta de apetito real.</p>
+          </div>
+          <div class="post-sintoma">
+            <span class="post-sintoma-titulo">Dolores err&#225;ticos</span>
+            <p>Rigidez en las articulaciones o cef&#225;leas recurrentes.</p>
+          </div>
+          <div class="post-sintoma">
+            <span class="post-sintoma-titulo">Obstrucci&#243;n de los sentidos</span>
+            <p>Dificultad para procesar los est&#237;mulos externos o necesidad de &#8220;subir el volumen&#8221; de los mismos para sentir su afecci&#243;n.</p>
+          </div>
+        </div>
+
+        <h2 class="post-h2">&#191;Por qu&#233; depuramos? Los fundamentos</h2>
+
+        <p>Todo lo que ingresa a nuestro cuerpo &#8212;sea alimento, emociones o informaci&#243;n sensorial&#8212; lleva consigo una cuota de energ&#237;a vital que debe ser transformada por nuestro <em>Agni</em> (fuego digestivo) para ser asimilada.</p>
+
+        <p>Para el Ayurveda, el <em>Agni</em> es el guardi&#225;n de la vida y el eje de nuestros sistemas corporales. Cuando este fuego se debilita, la transformaci&#243;n de todo aquello que absorbemos del ambiente empieza a ser deficiente o err&#225;tica y <strong>se genera el <em>Ama,</em> cuya acumulaci&#243;n es el primer paso para la enfermedad.</strong></p>
+
+        <blockquote class="post-quote">El Dr. David Frawley describe al <em>Ama</em> como una sustancia pegajosa y fr&#237;a que obstruye no solo los intestinos, sino los canales sutiles (<em>Srotas</em>) por donde fluye la nutrici&#243;n y la conciencia.</blockquote>
+
+        <p>La depuraci&#243;n peri&#243;dica es el proceso de encender ese fuego para procesar y eliminar esta toxina acumulada.</p>
+
+        <h2 class="post-h2">Los beneficios de volver al equilibrio</h2>
+
+        <p>Al realizar una depuraci&#243;n adecuada y guiada por expertxs, los beneficios impactan profundamente en todos nuestros niveles:</p>
+
+        <div class="post-beneficios">
+          <div class="post-beneficio">
+            <div class="post-beneficio-nombre">Claridad Mental y Energ&#237;a <em>S&#225;tvica</em></div>
+            <p>Al eliminar la &#8220;niebla&#8221; del <em>Ama,</em> la mente recupera su estado de presencia y calma. La posibilidad de lentitud y moderaci&#243;n impactan directamente en la calidad de vida.</p>
+          </div>
+          <div class="post-beneficio">
+            <div class="post-beneficio-nombre">Activaci&#243;n Metab&#243;lica</div>
+            <p>Fortalecemos nuestro <em>Agni,</em> optimizando la absorci&#243;n de nutrientes. Sentimos los sabores sin necesidad de elevar el est&#237;mulo. Mejoramos la nutrici&#243;n de todos nuestros tejidos.</p>
+          </div>
+          <div class="post-beneficio">
+            <div class="post-beneficio-nombre">Fortalecimiento del <em>Ojas</em> (Vitalidad Inmune)</div>
+            <p>Limpiar el terreno permite que el cuerpo produzca <em>Ojas,</em> la esencia pura de nuestra inmunidad y resiliencia. Nos enfermamos menos y nos sentimos m&#225;s fuertes.</p>
+          </div>
+          <div class="post-beneficio">
+            <div class="post-beneficio-nombre">Equilibrio Hormonal y Bioqu&#237;mico</div>
+            <p>Se traduce en una sensaci&#243;n de ligereza y una respuesta m&#225;s acorde con los ritmos naturales de hambre y saciedad.</p>
+          </div>
+        </div>
+
+        <blockquote class="post-quote">&#8220;Depurar no es pasar hambre, sino elegir alimentos con alta cuota de energ&#237;a vital y prepararlos de forma consciente.&#8221;</blockquote>
+
+        <p class="post-closing">Realizar este proceso de forma regular, 1 o 2 veces al a&#241;o, es un acto de devoci&#243;n hacia nuestro propio bienestar.</p>
+
+      </div>
+
+      <div class="post-cta-box post-cta-depu">
+        <div class="post-cta-depu-inner">
+          <div class="post-cta-depu-tag">Pr&#243;ximo programa</div>
+          <h3 class="post-cta-depu-title post-cta-depu-title--dark">Depuraci&#243;n Ayurveda</h3>
+          <p class="post-cta-depu-desc post-cta-depu-desc--dark">Los cupos son limitados. Anot&#225;te en la lista de espera para ser notificada cuando abramos nuevas fechas.</p>
+          <a href="https://forms.google.com" target="_blank" class="btn-primary">Anotarme en la lista de espera &#8594;</a>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+
+</div>
+
+<!-- FOOTER -->
+<footer id="page-footer">
+  <div>
+    <div class="footer-brand">Dra. Daniela Gayoso</div>
+    <div class="footer-sub">Medicina Integrativa con enfoque Ayurveda<br>Especializada en Medicina Ayurveda y GinecoEcolog&#237;a&#174;</div>
+  </div>
+  <div>
+    <h5>Navegaci&#243;n</h5>
+    <ul>
+      <li><a href="https://dradanigayoso.com.ar#que-es">&#191;Qu&#233; es Ayurveda?</a></li>
+      <li><a href="https://dradanigayoso.com.ar#sobre-mi">Sobre m&#237;</a></li>
+      <li><a href="https://dradanigayoso.com.ar#servicios">Servicios</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+  </div>
+  <div>
+    <h5>Consultas</h5>
+    <ul>
+      <li onclick="openModal('consulta')" style="cursor:pointer;transition:color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color=''">Agend&#225; tu primera consulta</li>
+      <li>Consulta de seguimiento (WhatsApp)</li>
+      <li onclick="openModal('espera')" style="cursor:pointer;transition:color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color=''">Lista de espera &#8212; Depuraci&#243;n</li>
+    </ul>
+  </div>
+  <div class="footer-bottom">&#169; 2025 Dra. Daniela Gayoso &#8212; dradanigayoso.com</div>
+</footer>
+
+<!-- MODALES -->
+<div class="modal-overlay" id="modal-consulta">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('consulta')">&#215;</button>
+    <h3>Agend&#225; tu consulta</h3>
+    <p>Eleg&#237; el tipo de consulta que necesit&#225;s.</p>
+    <div class="modal-options">
+      <a href="https://forms.google.com" target="_blank" class="modal-option"><div><div class="modal-option-title">Primera vez Ayurveda</div><div class="modal-option-meta">90&#8211;120 min &middot; Virtual o presencial</div></div><span class="modal-option-arrow">&#8594;</span></a>
+      <a href="https://forms.google.com" target="_blank" class="modal-option"><div><div class="modal-option-title">Primera vez GinecoEcolog&#237;a</div><div class="modal-option-meta">~90 min &middot; Virtual o presencial</div></div><span class="modal-option-arrow">&#8594;</span></a>
+    </div>
+    <p style="margin-top:16px;font-size:0.77rem;">&#191;No sab&#233;s cu&#225;l elegir? <a href="https://dradanigayoso.com.ar#servicios" style="color:var(--slate-dark)">Ver la gu&#237;a &#8594;</a></p>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-espera">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('espera')">&#215;</button>
+    <h3>Depuraci&#243;n Ayurveda</h3>
+    <p>Los programas de Depuraci&#243;n Ayurveda tienen cupos limitados. Anot&#225;te en la lista de espera para ser notificada cuando se abran nuevas fechas.</p>
+    <div class="modal-options">
+      <a href="https://forms.google.com" target="_blank" class="modal-option"><div><div class="modal-option-title">Anotarme en la lista de espera</div><div class="modal-option-meta">Te avisamos cuando haya nuevas fechas</div></div><span class="modal-option-arrow">&#8594;</span></a>
+      <a href="blog.html" class="modal-option"><div><div class="modal-option-title">Leer sobre depuraci&#243;n Ayurveda</div><div class="modal-option-meta">Fundamentos y qu&#233; esperar del proceso</div></div><span class="modal-option-arrow">&#8594;</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- POST NAV -->
+<div id="post-nav" class="post-nav" style="display:none;">
+  <button class="post-back" onclick="closePost()">&#8592; Volver al blog</button>
+  <span style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--navy);">Dra. Daniela Gayoso</span>
+  <a href="#" class="btn-primary" style="font-size:0.7rem;padding:10px 17px;" onclick="closePost();openModal('consulta');return false;">Consulta</a>
+</div>
+
+<script>
+  // Scroll reveal for cards
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), e.target.dataset.delay || 0);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.blog-card').forEach((card, i) => {
+    card.dataset.delay = i * 100;
+    obs.observe(card);
+  });
+
+  // Modal
+  function openModal(id) { document.getElementById('modal-'+id).classList.add('active'); document.body.style.overflow='hidden'; return false; }
+  function closeModal(id) { document.getElementById('modal-'+id).classList.remove('active'); document.body.style.overflow=''; }
+  document.querySelectorAll('.modal-overlay').forEach(o => {
+    o.addEventListener('click', function(e) { if(e.target===this){ this.classList.remove('active'); document.body.style.overflow=''; } });
+  });
+
+  // Posts
+  const postView = document.getElementById('post-view');
+  const postNav  = document.getElementById('post-nav');
+  const mainEls  = ['blog-top','blog-main','page-footer'];
+
+  function openPost(slug) {
+    mainEls.forEach(id => { const el = document.getElementById(id); if(el) el.style.display='none'; });
+    document.querySelector('nav').style.display = 'none';
+    postView.style.display = 'block';
+    postNav.style.display  = 'flex';
+    document.querySelectorAll('.post-page').forEach(p => p.classList.remove('active'));
+    const t = document.querySelector('.post-page[data-post="'+slug+'"]');
+    if(t) t.classList.add('active');
+    window.scrollTo(0,0);
+  }
+
+  function closePost() {
+    mainEls.forEach(id => { const el = document.getElementById(id); if(el) el.style.display=''; });
+    document.querySelector('nav').style.display = '';
+    postView.style.display = 'none';
+    postNav.style.display  = 'none';
+    document.querySelectorAll('.post-page').forEach(p => p.classList.remove('active'));
+    setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50);
+  }
+</script>
+</body>
+</html>
