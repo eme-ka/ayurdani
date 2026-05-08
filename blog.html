@@ -230,6 +230,114 @@
   .post-cta-depu-desc { font-size:0.9rem; line-height:1.72; color:var(--text-mid); font-weight:300; margin-bottom:24px; }
   .post-cta-depu-desc em { font-style:italic; color:var(--slate-dark); }
 
+
+  /* DUAL CTA */
+  .post-cta-dual { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin-top:44px; }
+  .post-cta-dual-item { padding:36px 32px; }
+  .post-cta-dual-espera { background:var(--navy); }
+  .post-cta-dual-espera .post-cta-depu-tag { color:var(--slate-light); }
+  .post-cta-dual-espera .post-cta-depu-title { color:white; }
+  .post-cta-dual-espera .post-cta-depu-desc { color:rgba(250,249,246,0.62); }
+  .post-cta-dual-blog { background:var(--slate-pale); border-top:3px solid var(--slate); }
+  .post-cta-dual-blog .post-cta-depu-tag { color:var(--slate-dark); }
+  .post-cta-dual-blog .post-cta-depu-title { color:var(--navy); }
+  .post-cta-dual-blog .post-cta-depu-desc { color:var(--text-mid); }
+
+  /* BENEFICIOS GRID */
+  .post-beneficios { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:24px 0 32px; }
+  .post-beneficio { background:var(--slate-pale); padding:24px 22px; border-top:2px solid var(--slate); }
+  .post-beneficio-titulo { font-size:0.84rem; font-weight:500; color:var(--navy); letter-spacing:0.02em; margin-bottom:10px; }
+  .post-beneficio-titulo em { font-style:italic; color:var(--slate-dark); font-weight:400; }
+  .post-beneficio p { font-size:0.85rem; line-height:1.72; color:var(--text-mid); font-weight:300; margin:0; }
+  .post-beneficio p em { font-style:italic; color:var(--slate-dark); }
+
+  @media (max-width:700px) {
+    .post-cta-dual { grid-template-columns:1fr; }
+    .post-beneficios { grid-template-columns:1fr; }
+  }
+
+
+  /* DUAL CTA (post-cta-double) */
+  .post-cta-double { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin-top:44px; }
+  .post-cta-half { padding:36px 32px; }
+  .post-cta-half--dark { background:var(--navy); }
+  .post-cta-half--dark .post-cta-depu-tag { color:var(--slate-light); }
+  .post-cta-half--dark .post-cta-depu-title { color:white; }
+  .post-cta-half--dark .post-cta-depu-desc { color:rgba(250,249,246,0.62); }
+  .post-cta-half--light { background:var(--slate-pale); border-top:3px solid var(--slate); }
+  .post-cta-half--light .post-cta-depu-tag { color:var(--slate-dark); }
+  .post-cta-half--light .post-cta-depu-title { color:var(--navy) !important; }
+  .post-cta-half--light .post-cta-depu-desc { color:var(--text-mid) !important; }
+  .btn-full { width:100%; justify-content:center; margin-top:20px; box-sizing:border-box; }
+  @media (max-width:700px) {
+    .post-cta-double { grid-template-columns:1fr; }
+  }
+
+
+  /* ETAPAS SAMPRAPTI */
+  .post-etapas { display:flex; flex-direction:column; gap:3px; margin:24px 0 32px; }
+  .post-etapa { display:flex; gap:0; background:var(--slate-pale); overflow:hidden; }
+  .post-etapa-num { min-width:64px; background:var(--slate-dark); color:white; font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:300; display:flex; align-items:center; justify-content:center; line-height:1; }
+  .post-etapa-body { padding:22px 26px; flex:1; }
+  .post-etapa-titulo { font-size:0.9rem; font-weight:500; color:var(--navy); letter-spacing:0.04em; margin-bottom:7px; }
+  .post-etapa-body p { font-size:0.88rem; line-height:1.72; color:var(--text-mid); font-weight:300; margin:0; }
+  .post-etapa-body p em { font-style:italic; color:var(--slate-dark); }
+
+
+  /* DOSHAS AYUNO */
+  .post-doshas-ayuno { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; margin:22px 0 30px; }
+  .post-dosha-item { padding:24px 20px; border-top:3px solid var(--slate); background:var(--slate-pale); }
+  .post-dosha-nombre { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-style:italic; color:var(--slate-dark); margin-bottom:10px; font-weight:500; }
+  .post-dosha-item p { font-size:0.86rem; line-height:1.72; color:var(--text-mid); font-weight:300; margin:0; }
+  .post-dosha-pitta { border-top-color:#7a8aaa; }
+  .post-dosha-vata  { border-top-color:#9ea9bb; }
+  .post-dosha-kapha { border-top-color:#5b6880; }
+  @media (max-width:700px) {
+    .post-doshas-ayuno { grid-template-columns:1fr; }
+  }
+
+
+  /* HEMISFERIOS */
+  .post-hemisferios { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin:22px 0 32px; }
+  .post-hemisferio { padding:28px 24px; }
+  .post-hemisferio--izq { background:var(--slate-pale); border-top:3px solid var(--slate); }
+  .post-hemisferio--der { background:var(--navy); border-top:3px solid var(--slate-dark); }
+  .post-hemisferio-label { font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-weight:500; margin-bottom:4px; }
+  .post-hemisferio--izq .post-hemisferio-label { color:var(--navy); }
+  .post-hemisferio--der .post-hemisferio-label { color:white; }
+  .post-hemisferio-sub { font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:14px; }
+  .post-hemisferio--izq .post-hemisferio-sub { color:var(--slate-dark); }
+  .post-hemisferio--der .post-hemisferio-sub { color:var(--slate-light); }
+  .post-hemisferio p { font-size:0.88rem; line-height:1.72; font-weight:300; margin:0; }
+  .post-hemisferio--izq p { color:var(--text-mid); }
+  .post-hemisferio--der p { color:rgba(250,249,246,0.65); }
+  @media (max-width:700px) {
+    .post-hemisferios { grid-template-columns:1fr; }
+  }
+
+
+  /* PRÁCTICAS DINACHARYA */
+  .post-practicas { display:flex; flex-direction:column; gap:3px; margin:22px 0 32px; }
+  .post-practica { display:flex; gap:0; background:var(--slate-pale); overflow:hidden; }
+  .post-practica-icono { min-width:56px; background:var(--slate); color:white; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .post-practica-body { padding:20px 24px; flex:1; }
+  .post-practica-titulo { font-size:0.9rem; font-weight:500; color:var(--navy); margin-bottom:6px; letter-spacing:0.01em; }
+  .post-practica-body p { font-size:0.87rem; line-height:1.72; color:var(--text-mid); font-weight:300; margin:0; }
+  .post-practica-body p em { font-style:italic; color:var(--slate-dark); }
+
+  /* RITMOS DEL DÍA */
+  .post-ritmos { display:grid; grid-template-columns:repeat(4,1fr); gap:3px; margin:28px 0 32px; }
+  .post-ritmo { background:var(--navy); padding:20px 18px; display:flex; flex-direction:column; gap:8px; }
+  .post-ritmo-hora { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--slate-light); font-weight:400; }
+  .post-ritmo-desc { font-size:0.76rem; line-height:1.6; color:rgba(250,249,246,0.55); font-weight:300; }
+  .post-ritmo-desc em { font-style:italic; color:var(--slate-light); }
+  @media (max-width:700px) {
+    .post-ritmos { grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:480px) {
+    .post-ritmos { grid-template-columns:1fr; }
+  }
+
   @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
 
   /* RESPONSIVE */
@@ -323,17 +431,74 @@
     <div class="blog-card" data-cat="slowlife" onclick="openPost('slow-life')">
       <div class="blog-thumb">
         <div class="blog-thumb-bg bt-4"></div>
-        <div class="blog-thumb-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.9"><path d="M12 2C8 2 5 6 5 10c0 5 7 12 7 12s7-7 7-12c0-4-3-8-7-8z"/><circle cx="12" cy="10" r="2"/></svg></div>
+        <div class="blog-thumb-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.9"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg></div>
       </div>
       <div class="blog-body">
-        <div class="blog-tag">Slow life</div>
+        <div class="blog-tag">Nutrici&#243;n cr&#237;tica</div>
         <div class="blog-date">24 de mayo, 2025</div>
-        <div class="blog-title">Recursos slow life para tu salud</div>
-        <p class="blog-excerpt">Herramientas concretas del Ayurveda para incorporar a tu vida cotidiana: rutinas, hierbas y pr&#225;cticas de presencia.</p>
+        <div class="blog-title">Ayuno intermitente: Una perspectiva cr&#237;tica y Ayurv&#233;dica m&#225;s all&#225; de las tendencias</div>
+        <p class="blog-excerpt">El ayuno no es para todxs. Una mirada cl&#237;nica e individualizada sobre una pr&#225;ctica que se vendi&#243; como universal.</p>
         <span class="blog-read-more">Leer &#8594;</span>
       </div>
     </div>
 
+    <div class="blog-card" data-cat="depuracion" onclick="openPost('depuracion')">
+      <div class="blog-thumb">
+        <div class="blog-thumb-bg" style="background:linear-gradient(135deg,#6a7888,#4a5870);width:100%;height:100%;"></div>
+        <div class="blog-thumb-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.9"><path d="M12 2c0 6-7 8-7 14a7 7 0 0014 0c0-6-7-8-7-14z"/><path d="M9 9c0 3 1.5 4 3 6"/></svg></div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-tag">Depuraci&#243;n</div>
+        <div class="blog-date">7 de junio, 2025</div>
+        <div class="blog-title">Depuraci&#243;n Ayurveda: Limpiar el terreno para recuperar la vitalidad</div>
+        <p class="blog-excerpt">C&#243;mo y por qu&#233; depurar seg&#250;n el Ayurveda: reconocer el <em>Ama,</em> encender el <em>Agni</em> y recuperar la vitalidad con un proceso guiado.</p>
+        <span class="blog-read-more">Leer &#8594;</span>
+      </div>
+    </div>
+
+    <div class="blog-card" data-cat="samprapti" onclick="openPost('samprapti')">
+      <div class="blog-thumb">
+        <div class="blog-thumb-bg" style="background:linear-gradient(135deg,#7a8aaa,#3d4d6a);width:100%;height:100%;"></div>
+        <div class="blog-thumb-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.9"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg></div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-tag">Enfermedad y prevenci&#243;n</div>
+        <div class="blog-date">21 de junio, 2025</div>
+        <div class="blog-title"><em>Samprapti:</em> El desarrollo de la enfermedad</div>
+        <p class="blog-excerpt">C&#243;mo el Ayurveda explica el origen y la progresi&#243;n de la enfermedad, desde los primeros signos hasta la manifestaci&#243;n &#8212;y c&#243;mo adelantarse.</p>
+        <span class="blog-read-more">Leer &#8594;</span>
+      </div>
+    </div>
+
+
+    <div class="blog-card" data-cat="bienestar" onclick="openPost('hemisferio')">
+      <div class="blog-thumb">
+        <div class="blog-thumb-bg" style="background:linear-gradient(135deg,#8898b8,#4a5a80);width:100%;height:100%;"></div>
+        <div class="blog-thumb-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.9"><path d="M12 2a10 10 0 0 1 0 20"/><path d="M12 2a10 10 0 0 0 0 20"/><line x1="12" y1="2" x2="12" y2="22"/><path d="M8 6c0 3 2 4 2 6s-2 3-2 6"/><path d="M16 6c0 3-2 4-2 6s2 3 2 6"/></svg></div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-tag">Bienestar &amp; sistema nervioso</div>
+        <div class="blog-date">5 de julio, 2025</div>
+        <div class="blog-title">Activar el Hemisferio Derecho: una v&#237;a de escape al estr&#233;s cr&#243;nico</div>
+        <p class="blog-excerpt">Por qu&#233; quedarnos atrapados en el &#8220;modo productivo&#8221; genera estr&#233;s cr&#243;nico, y c&#243;mo activar la mente creativa con recursos simples y concretos.</p>
+        <span class="blog-read-more">Leer &#8594;</span>
+      </div>
+    </div>
+
+
+    <div class="blog-card" data-cat="dinacharya" onclick="openPost('dinacharya')">
+      <div class="blog-thumb">
+        <div class="blog-thumb-bg" style="background:linear-gradient(135deg,#6a8aaa,#3a5a78);width:100%;height:100%;"></div>
+        <div class="blog-thumb-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.9"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-tag">Rutinas &amp; h&#225;bitos</div>
+        <div class="blog-date">19 de julio, 2025</div>
+        <div class="blog-title"><em>Dinacharya:</em> La rutina ayurv&#233;dica diaria</div>
+        <p class="blog-excerpt">Sintonizar nuestro reloj interno con el reloj d&#243;shico de la naturaleza: la herramienta m&#225;s poderosa y accesible del Ayurveda para el equilibrio cotidiano.</p>
+        <span class="blog-read-more">Leer &#8594;</span>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -542,15 +707,65 @@
   <article class="post-page" data-post="slow-life">
     <div class="post-hero bt-4"></div>
     <div class="post-content">
-      <div class="post-meta"><span class="post-tag-inline">Slow life</span><span class="post-read">5 min de lectura</span><span class="post-read">24 de mayo, 2025</span></div>
-      <h1 class="post-title">Recursos slow life para tu salud</h1>
+      <div class="post-meta"><span class="post-tag-inline">Nutrici&#243;n cr&#237;tica</span><span class="post-read">12 min de lectura</span><span class="post-read">24 de mayo, 2025</span></div>
+      <h1 class="post-title">Ayuno intermitente: Una perspectiva cr&#237;tica y Ayurv&#233;dica m&#225;s all&#225; de las tendencias</h1>
       <div class="post-divider"></div>
       <div class="post-body">
-        <p>El Ayurveda no es una medicina de crisis: es una medicina de todos los d&#237;as. Sus herramientas m&#225;s poderosas no son las m&#225;s espectaculares, sino las m&#225;s constantes. La <em>dinacharya</em> &#8212;rutina diaria&#8212; es uno de sus pilares fundamentales: despertar antes del amanecer, raspar la lengua, hacer abhyanga, moverse, meditar, comer en horarios regulares.</p>
-        <p>El concepto de <em>slow life</em> resuena naturalmente con esta filosof&#237;a. No se trata de hacer menos, sino de hacer con m&#225;s presencia y coherencia con el propio ritmo. Frente a una cultura que promueve el rendimiento constante, el Ayurveda propone escuchar las se&#241;ales del cuerpo antes de que se conviertan en s&#237;ntomas.</p>
-        <p>Algunos recursos concretos: reducir los est&#237;mulos digitales antes de dormir, comer sin pantallas, salir al sol por la ma&#241;ana, incorporar hierbas adapt&#243;genas como la ashwagandha o el tulsi, y reconocer cu&#225;ndo tu sistema nervioso est&#225; en modo alerta.</p>
+
+        <p class="post-lead">En los &#250;ltimos a&#241;os, el ayuno intermitente se ha posicionado como una soluci&#243;n universal para la salud. Sin embargo, desde la medicina Ayurveda y una visi&#243;n integrativa actualizada, es fundamental desarmar los estereotipos y entender que no es la mejor opci&#243;n para todas las personas. Como profesionales, nuestro primer deber es la individualizaci&#243;n.</p>
+
+        <h2 class="post-h2">La brecha de g&#233;nero en la investigaci&#243;n</h2>
+
+        <p>Es necesario aclarar que la gran mayor&#237;a de los estudios que se&#241;alan los beneficios del ayuno fueron realizados en varones o en mujeres postmenop&#225;usicas. Esto es un dato cl&#237;nico vital: si ten&#233;s un ciclo menstrual ovulatorio, tu fisiolog&#237;a responde de manera distinta al estr&#233;s metab&#243;lico.</p>
+
+        <blockquote class="post-quote">&#8220;Si decid&#237;s probarlo, te sugiero observar con much&#237;sima atenci&#243;n los indicios de tu cuerpo y, preferentemente, consultar con un profesional actualizado que trabaje con perspectiva de g&#233;nero.&#8221;</blockquote>
+
+        <h2 class="post-h2">La constituci&#243;n individual (<em>Doshas</em>) y el ayuno</h2>
+
+        <p>No todos los biotipos se benefician de la privaci&#243;n prolongada de alimento:</p>
+
+        <div class="post-doshas-ayuno">
+          <div class="post-dosha-item post-dosha-pitta">
+            <div class="post-dosha-nombre"><em>Pitta</em></div>
+            <p>Suelen tener un fuego digestivo muy activo y no toleran bien los ayunos largos. Ir en contra de esa se&#241;al natural puede generar desequilibrios.</p>
+          </div>
+          <div class="post-dosha-item post-dosha-vata">
+            <div class="post-dosha-nombre"><em>Vata</em></div>
+            <p>Tampoco son, en general, candidatxs adecuadxs para esta pr&#225;ctica, salvo casos muy espec&#237;ficos.</p>
+          </div>
+          <div class="post-dosha-item post-dosha-kapha">
+            <div class="post-dosha-nombre"><em>Kapha</em></div>
+            <p>Quienes m&#225;s podr&#237;an beneficiarse, ya que su metabolismo tiende a ser m&#225;s lento y requiere de espacios de vac&#237;o.</p>
+          </div>
+        </div>
+
+        <h2 class="post-h2">El factor tiempo: Cu&#225;ndo ayunamos importa m&#225;s que cu&#225;nto</h2>
+
+        <p>En la cultura del ayuno suele priorizarse el conteo de horas, pero para el Ayurveda el momento del d&#237;a es el factor determinante. Nuestra fisiolog&#237;a est&#225; sincronizada con los ritmos circadianos: el mediod&#237;a es el punto m&#225;ximo del sol y, por ende, de nuestro fuego digestivo (<em>Agni</em>). Ese debe ser el momento de la comida principal.</p>
+
+        <p>Bajo esta l&#243;gica, es mucho m&#225;s beneficioso cenar muy temprano que almorzar muy tarde por el simple hecho de &#8220;cumplir horas&#8221;.</p>
+
+        <h2 class="post-h2">El mito de los l&#237;quidos que &#8220;no rompen el ayuno&#8221;</h2>
+
+        <p>Existe la creencia de que si algo no tiene calor&#237;as, da igual consumirlo durante la ventana de ayuno. En Argentina, el h&#225;bito del mate por la ma&#241;ana es el ejemplo perfecto. Aunque t&#233;cnicamente &#8220;no rompa&#8221; el ayuno metab&#243;lico cet&#243;geno, para el Ayurveda el mate a primera hora y en exceso <strong>apaga nuestro fuego digestivo.</strong> Comenzar el d&#237;a enfriando y secando nuestro sistema es un desp prop&#243;sito si lo que buscamos es vitalidad y salud a largo plazo.</p>
+
+        <h2 class="post-h2">Calidad vs. ventanas de tiempo</h2>
+
+        <p>Algunos programas de ayuno restan importancia a <em>qu&#233;</em> alimento comas mientras lo hagas dentro de tu ventana horaria. La calidad del alimento es innegociable: no es lo mismo nutrirse con alimento real que con ultraprocesados cargados de az&#250;cares, aceites hidrogenados y qu&#237;micos.</p>
+
+        <p>C&#243;mo decidimos romper el ayuno es igualmente crucial, ya que esa primera ingesta determina el camino metab&#243;lico de todo nuestro d&#237;a. No da igual comenzar con grasas saludables que con az&#250;cares simples.</p>
+
+        <h2 class="post-h2">Una nota sobre las dietas Keto e hidratos de carbono</h2>
+
+        <p>Al igual que el ayuno, las dietas cet&#243;genas han sido estudiadas mayoritariamente en poblaciones sin ciclo menstrual ovulatorio y deber&#237;an considerarse como intervenciones por per&#237;odos limitados. Los hidratos de carbono complejos y de calidad no son el enemigo; son un grupo de alimentos necesario para una nutrici&#243;n completa y equilibrada.</p>
+
+        <blockquote class="post-quote">&#8220;La salud no se encuentra en las f&#243;rmulas r&#237;gidas, sino en el respeto por los ritmos vitales de cada unx y la escucha atenta de nuestro propio cuerpo-universo.&#8221;</blockquote>
+
       </div>
-      <div class="post-cta-box"><p>Si quer&#233;s incorporar estas pr&#225;cticas de forma personalizada y sostenible, podemos trabajarlo juntas en consulta.</p><a href="#" class="btn-primary" onclick="closePost();openModal('consulta');return false;">Agend&#225; una consulta</a></div>
+      <div class="post-cta-box">
+        <p>&#191;Quer&#233;s entender c&#243;mo adapt&#225;r estas ideas a tu constituci&#243;n y momento de vida? Lo trabajamos juntas en consulta.</p>
+        <a href="#" class="btn-primary" onclick="closePost();openModal('consulta');return false;">Agend&#225; una consulta</a>
+      </div>
     </div>
   </article>
 
@@ -645,6 +860,295 @@
         </div>
       </div>
 
+    </div>
+  </article>
+
+
+
+  <article class="post-page" data-post="depuracion">
+    <div class="post-hero" style="background:linear-gradient(135deg,#6a7888,#4a5870);height:320px;margin-top:62px;"></div>
+    <div class="post-content">
+      <div class="post-meta"><span class="post-tag-inline">Depuraci&#243;n</span><span class="post-read">12 min de lectura</span><span class="post-read">7 de junio, 2025</span></div>
+      <h1 class="post-title">Depuraci&#243;n Ayurveda: Limpiar el terreno para recuperar la vitalidad</h1>
+      <div class="post-divider"></div>
+      <div class="post-body">
+
+        <p class="post-lead">El Ayurveda incluye las pr&#225;cticas de depuraci&#243;n como un pilar esencial del cuidado preventivo. No se trata de un recurso que s&#243;lo utilizamos cuando nos sentimos mal o de forma aleatoria; por el contrario, la medicina ayurv&#233;dica propone realizar estos procesos de limpieza de manera regular, al menos una o dos veces al a&#241;o para mantener la salud y la vitalidad.</p>
+
+        <p>Los momentos de transici&#243;n estacional &#8212;como el oto&#241;o y la primavera&#8212; son las ventanas ideales para realizar la depuraci&#243;n. En estos periodos, la naturaleza cambia y nuestro cuerpo tambi&#233;n atraviesa una transformaci&#243;n profunda; apoyarlo con una desintoxicaci&#243;n consciente permite que la salud sea un lugar cotidiano y no un evento pasajero.</p>
+
+        <h2 class="post-h2">&#191;C&#243;mo puede verse la toxina acumulada (<em>Ama</em>)?</h2>
+
+        <p>Muchas veces normalizamos ciertos malestares, pero el cuerpo nos env&#237;a se&#241;ales claras cuando nuestros canales est&#225;n obstruidos. La acumulaci&#243;n de <em>Ama</em> se manifiesta de formas muy concretas:</p>
+
+        <ul class="post-list">
+          <li><strong>Pesadez constante:</strong> Un letargo f&#237;sico persistente, incluso al despertar.</li>
+          <li><strong>Neblina mental:</strong> Dificultad para concentrarse o una sensaci&#243;n de &#8220;embotamiento&#8221; y de confusi&#243;n.</li>
+          <li><strong>Exceso de toxina en la lengua:</strong> Una capa blanquecina o amarillenta abundante al levantarse. Mal aliento y dificultad para sentir los sabores del alimento.</li>
+          <li><strong>Digesti&#243;n lenta:</strong> Gases, inflamaci&#243;n abdominal o falta de apetito real.</li>
+          <li><strong>Dolores err&#225;ticos:</strong> Rigidez en las articulaciones o cef&#225;leas recurrentes.</li>
+          <li><strong>Obstrucci&#243;n de los sentidos:</strong> Dificultad para procesar los est&#237;mulos externos o necesidad de &#8220;subir el volumen&#8221; de los mismos para sentir su afeci&#243;n.</li>
+        </ul>
+
+        <h2 class="post-h2">&#191;Por qu&#233; depuramos? Los fundamentos</h2>
+
+        <p>Todo lo que ingresa a nuestro cuerpo &#8212;sea alimento, emociones o informaci&#243;n sensorial&#8212; lleva consigo una cuota de energ&#237;a vital que debe ser transformada por nuestro <em>Agni</em> (fuego digestivo) para ser asimilada.</p>
+
+        <p>Para el Ayurveda, el <em>Agni</em> es el guardi&#225;n de la vida y el eje de nuestros sistemas corporales. Cuando este fuego se debilita, la transformaci&#243;n de todo aquello que absorbemos del ambiente empieza a ser deficiente o err&#225;tica.</p>
+
+        <blockquote class="post-quote">&#8220;Se genera el <em>Ama,</em> cuya acumulaci&#243;n es el primer paso para la enfermedad.&#8221;</blockquote>
+
+        <p>El Dr. David Frawley describe al <em>Ama</em> como una sustancia pegajosa y fr&#237;a que obstruye no solo los intestinos, sino los canales sutiles (<em>Srotas</em>) por donde fluye la nutrici&#243;n y la conciencia. La depuraci&#243;n peri&#243;dica es el proceso de encender ese fuego para procesar y eliminar esta toxina acumulada.</p>
+
+        <h2 class="post-h2">Los beneficios de volver al equilibrio</h2>
+
+        <p>Al realizar una depuraci&#243;n adecuada y guiada por expertxs, los beneficios impactan profundamente en todos nuestros niveles:</p>
+
+        <div class="post-beneficios">
+          <div class="post-beneficio">
+            <div class="post-beneficio-titulo">Claridad Mental y Energ&#237;a <em>S&#225;tvica</em></div>
+            <p>Al eliminar la &#8220;niebla&#8221; del <em>Ama,</em> la mente recupera su estado de presencia y calma. La posibilidad de lentitud y moderaci&#243;n impactan directamente en la calidad de vida.</p>
+          </div>
+          <div class="post-beneficio">
+            <div class="post-beneficio-titulo">Activaci&#243;n Metab&#243;lica</div>
+            <p>Fortalecemos nuestro <em>Agni,</em> optimizando la absorci&#243;n de nutrientes. Sentimos los sabores sin necesidad de elevar el est&#237;mulo. Mejoramos la nutrici&#243;n de todos nuestros tejidos.</p>
+          </div>
+          <div class="post-beneficio">
+            <div class="post-beneficio-titulo">Fortalecimiento del <em>Ojas</em> (Vitalidad Inmune)</div>
+            <p>Limpiar el terreno permite que el cuerpo produzca <em>Ojas,</em> la esencia pura de nuestra inmunidad y resiliencia. Nos enfermamos menos y nos sentimos m&#225;s fuertes.</p>
+          </div>
+          <div class="post-beneficio">
+            <div class="post-beneficio-titulo">Equilibrio Hormonal y Bioqu&#237;mico</div>
+            <p>Se traduce en una sensaci&#243;n de ligereza y una respuesta m&#225;s acorde con los ritmos naturales de hambre y saciedad.</p>
+          </div>
+        </div>
+
+        <h2 class="post-h2">Un proceso de acompa&#241;amiento</h2>
+
+        <p>Depurar no es pasar hambre, sino elegir alimentos con alta cuota de energ&#237;a vital y prepararlos de forma consciente. Siguiendo las gu&#237;as de terapias ayurv&#233;dicas, el enfoque es reintegrar h&#225;bitos que sostengan el equilibrio a largo plazo.</p>
+
+        <blockquote class="post-quote">&#8220;Realizar este proceso de forma regular, 1 o 2 veces al a&#241;o, es un acto de devoci&#243;n hacia nuestro propio bienestar.&#8221;</blockquote>
+
+      </div>
+
+      <div class="post-cta-box post-cta-depu">
+        <div class="post-cta-depu-inner">
+          <div class="post-cta-depu-tag">Programa grupal &middot; Cupos limitados</div>
+          <h3 class="post-cta-depu-title">Uni&#233;ndote a la pr&#243;xima Depuraci&#243;n Ayurveda</h3>
+          <p class="post-cta-depu-desc">Acompa&#241;amiento completo para limpiar el terreno, fortalecer el <em>Agni</em> y recuperar la vitalidad. Te avisamos cuando abramos la pr&#243;xima fecha.</p>
+          <a href="https://forms.google.com" target="_blank" class="btn-primary">Anotarme en la lista de espera &#8594;</a>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <article class="post-page" data-post="samprapti">
+    <div class="post-hero" style="background:linear-gradient(135deg,#7a8aaa,#3d4d6a);height:320px;margin-top:62px;"></div>
+    <div class="post-content">
+      <div class="post-meta"><span class="post-tag-inline">Enfermedad y prevenci&#243;n</span><span class="post-read">10 min de lectura</span><span class="post-read">21 de junio, 2025</span></div>
+      <h1 class="post-title"><em>Samprapti:</em> El desarrollo de la enfermedad</h1>
+      <div class="post-divider"></div>
+      <div class="post-body">
+
+        <p class="post-lead">El Ayurveda entiende la salud como un equilibrio din&#225;mico. Para comprender c&#243;mo se desarrollan las enfermedades &#8212;desde indigesti&#243;n cr&#243;nica o mигра&#241;as recurrentes hasta enfermedades autoinmunes o alteraciones metab&#243;licas complejas&#8212;, debemos poner el foco en el <em>Ama.</em> Para eso, se explica la <em>Samprapti</em> (en s&#225;nscrito: obtener la comprensi&#243;n correcta): el proceso de desarrollo de las enfermedades.</p>
+
+        <p>Todo comienza con la acumulaci&#243;n de los humores biol&#243;gicos (<em>Vata,</em> <em>Pitta</em> o <em>Kapha</em>) en el tubo digestivo. En esta etapa, el desequilibrio es todav&#237;a muy din&#225;mico y fluido. Podemos sentir se&#241;ales sutiles: una leve pesadez, un poco de gases o una m&#237;nima irritaci&#243;n seg&#250;n qu&#233; <em>doshas</em> se acumulen.</p>
+
+        <p>Si en este momento escuchamos al cuerpo y ajustamos nuestros h&#225;bitos, el equilibrio regresa con facilidad. El problema surge cuando ignoramos estas alertas y permitimos que el desequilibrio se profundice.</p>
+
+        <blockquote class="post-quote">&#8220;Si estos desequilibrios contin&#250;an, nuestro fuego digestivo (<em>Agni</em>) se debilita y no logra procesar completamente lo que ingerimos. Ese alimento mal digerido se convierte en <em>Ama:</em> una sustancia t&#243;xica, pegajosa y de cualidad fr&#237;a.&#8221;</blockquote>
+
+        <p>Aqu&#237; es donde el proceso cambia de naturaleza. Mientras que los <em>Doshas</em> son fuerzas energ&#233;ticas, el <em>Ama</em> es una sustancia material que se sedimenta. Es el &#8220;pegamento&#8221; que hace que el desequilibrio deje de ser algo pasajero y se establezca en el cuerpo. El <em>Ama</em> se adhiere a los canales (<em>Srotas</em>), obstruye la nutrici&#243;n de los tejidos y nubla la inteligencia celular.</p>
+
+        <h2 class="post-h2">C&#243;mo avanza la <em>Samprapti</em></h2>
+
+        <p>Una vez que el <em>Ama</em> se mezcla con los <em>Doshas</em> desequilibrados, el proceso de enfermedad se acelera en tres etapas:</p>
+
+        <div class="post-etapas">
+          <div class="post-etapa">
+            <div class="post-etapa-num">01</div>
+            <div class="post-etapa-body">
+              <div class="post-etapa-titulo">Desborde</div>
+              <p>El desequilibrio ya no se queda en el sistema digestivo; viaja a trav&#233;s de la sangre y la linfa buscando un lugar donde depositarse.</p>
+            </div>
+          </div>
+          <div class="post-etapa">
+            <div class="post-etapa-num">02</div>
+            <div class="post-etapa-body">
+              <div class="post-etapa-titulo">Infiltraci&#243;n</div>
+              <p>El <em>Ama</em> act&#250;a como un ancla, permitiendo que los <em>Doshas</em> se &#8220;estacionen&#8221; en nuestros puntos m&#225;s d&#233;biles o vulnerables &#8212;nuestros talones de Aquiles gen&#233;ticos o adquiridos.</p>
+            </div>
+          </div>
+          <div class="post-etapa">
+            <div class="post-etapa-num">03</div>
+            <div class="post-etapa-body">
+              <div class="post-etapa-titulo">Manifestaci&#243;n</div>
+              <p>Es reci&#233;n aqu&#237; cuando aparece la dolencia con nombre y apellido: como la gastritis establecida, el dolor articular cr&#243;nico o la congesti&#243;n respiratoria recurrente.</p>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="post-h2">El desaf&#237;o de la medicina actual</h2>
+
+        <p>La medicina convencional suele intervenir reci&#233;n en la etapa de manifestaci&#243;n, cuando el <em>Ama</em> ya ha generado cambios en los tejidos. Sin embargo, el Ayurveda nos ense&#241;a que la verdadera prevenci&#243;n consiste en no permitir que el <em>Ama</em> se sedimente.</p>
+
+        <p>Tomar acci&#243;n ante los primeros signos de pesadez o irregularidad es un acto de sabidur&#237;a cl&#237;nica. Si logramos mantener nuestro <em>Agni</em> fuerte, evitamos la formaci&#243;n de <em>Ama</em> y, por lo tanto, le quitamos a la enfermedad el combustible que necesita para establecerse.</p>
+
+        <h2 class="post-h2">Adelantarse es la clave</h2>
+
+        <p>Con las herramientas del Ayurveda, no solo aprendemos a reconocer estos desequilibrios iniciales, sino que aprendemos a trabajar para disolver el <em>Ama</em> &#8212;desde las terapias herbales, las depuraciones y los tratamientos espec&#237;ficos para liberar el <em>Ama</em> de sus asentamientos.</p>
+
+        <blockquote class="post-quote">&#8220;Conociendo tu constituci&#243;n individual, tus desequilibrios d&#243;shicos y tu rutina diaria ideal, pod&#233;s afinar tu percepci&#243;n y aprender las acciones peque&#241;as que te permiten mantenerte cerca de tu eje de salud.&#8221;</blockquote>
+
+      </div>
+
+      <div class="post-cta-box">
+        <p>Para trabajar los desequilibrios y adelantarte a la <em>samprapti,</em> pod&#233;s pedir turno para una primera consulta Ayurveda.</p>
+        <a href="#" class="btn-primary" onclick="closePost();openModal('consulta');return false;">Agend&#225; tu primera consulta &#8594;</a>
+      </div>
+
+    </div>
+  </article>
+  <article class="post-page" data-post="hemisferio">
+    <div class="post-hero" style="background:linear-gradient(135deg,#8898b8,#4a5a80);height:320px;margin-top:62px;"></div>
+    <div class="post-content">
+      <div class="post-meta"><span class="post-tag-inline">Bienestar &amp; sistema nervioso</span><span class="post-read">8 min de lectura</span><span class="post-read">5 de julio, 2025</span></div>
+      <h1 class="post-title">Activar el Hemisferio Derecho: una v&#237;a de escape al estr&#233;s cr&#243;nico</h1>
+      <div class="post-divider"></div>
+      <div class="post-body">
+
+        <p class="post-lead">&#191;Alguna vez sentiste que tu cabeza es una m&#225;quina que no puede parar de procesar pendientes? Para entender por qu&#233; nos sucede esto, es fundamental conocer c&#243;mo funcionan nuestros dos hemisferios cerebrales y la importancia de su alternancia.</p>
+
+        <h2 class="post-h2">La dualidad de nuestra mente</h2>
+
+        <p>Nuestro cerebro opera a trav&#233;s de dos canales con funciones muy distintas:</p>
+
+        <div class="post-hemisferios">
+          <div class="post-hemisferio post-hemisferio--izq">
+            <div class="post-hemisferio-label">Hemisferio izquierdo</div>
+            <div class="post-hemisferio-sub">Mente l&#243;gica y matem&#225;tica</div>
+            <p>Gracias a &#233;l podemos ser productivos, recordar compromisos, organizar listas de quehaceres y mantener la noci&#243;n del tiempo. Es el motor de nuestra eficiencia diaria.</p>
+          </div>
+          <div class="post-hemisferio post-hemisferio--der">
+            <div class="post-hemisferio-label">Hemisferio derecho</div>
+            <div class="post-hemisferio-sub">Mente creativa</div>
+            <p>Aqu&#237; habita la que nos conecta con las emociones profundas, la flexibilidad y la calma. Es esa mitad que, naturalmente, tienen mucho m&#225;s activa los ni&#241;os.</p>
+          </div>
+        </div>
+
+        <h2 class="post-h2">El riesgo de vivir en &#8220;Modo Productivo&#8221;</h2>
+
+        <p>En un estado de salud ideal, la predominancia de un hemisferio sobre el otro se alterna varias veces al d&#237;a de forma natural. Sin embargo, la exigencia y la velocidad a la que vivimos nos empujan a situarnos casi permanentemente en el hemisferio izquierdo.</p>
+
+        <p>Al perder esta alternancia saludable y quedarnos atrapados en el &#8220;cerebro productivo&#8221;, desarrollamos un tono biol&#243;gico que nos conduce directamente al estr&#233;s cr&#243;nico. De aqu&#237; derivan malestares que hoy vemos con frecuencia en el consultorio: insomnio, tensiones musculares, bruxismo y cef&#225;leas.</p>
+
+        <blockquote class="post-quote">&#8220;Integrar el hemisferio derecho en nuestra rutina diaria no es un lujo; es una necesidad cl&#237;nica. Activar esta parte del cerebro se siente como apretar el bot&#243;n de RESET en una m&#225;quina trabada.&#8221;</blockquote>
+
+        <h2 class="post-h2">&#191;C&#243;mo invitar a la calma a nuestros d&#237;as?</h2>
+
+        <p>Lo que activa la mente creativa var&#237;a seg&#250;n cada persona: puede ser cuidar las plantas, jugar, cocinar, bailar o realizar cualquier trabajo manual. Sin embargo, existen ejercicios universales que funcionan como un puente directo hacia esa calma:</p>
+
+        <ol class="post-list-num">
+          <li>
+            <span class="post-list-titulo">La ducha con la luz apagada</span>
+            <p>Parece simple, pero es transformador (siempre con cuidado de no resbalar). Al quitar el factor visual, la mente l&#243;gica pierde el control mec&#225;nico de la situaci&#243;n. La atenci&#243;n se desplaza inmediatamente a las sensaciones: el tacto para reconocer el frasco de shamp&#250;, el olfato que se agudiza, la temperatura del agua. De pronto, dej&#225;s de planificar qu&#233; har&#225;s al salir y tu cabeza se concentra en el aqu&#237; y ahora.</p>
+          </li>
+          <li>
+            <span class="post-list-titulo"><em>Pranayama Nadi Shodhana</em> (Respiraci&#243;n alternada)</span>
+            <p>Esta t&#233;cnica milenaria busca equilibrar la actividad de ambos hemisferios. Es una herramienta poderosa que suelo ense&#241;ar para transitar episodios de ansiedad o momentos de estr&#233;s agudo, ya que aporta una calma biol&#243;gica casi inmediata.</p>
+          </li>
+          <li>
+            <span class="post-list-titulo">Masaje de pies con aceite</span>
+            <p>El tacto y el cuidado de nuestras ra&#237;ces tienen un efecto profundo en el sistema nervioso. Existe un umbral de tiempo en el que, tras unos minutos de masaje, se percibe un cambio claro en la actividad mental: de la agitaci&#243;n a la presencia.</p>
+          </li>
+        </ol>
+
+        <p class="post-closing">Aplicar aunque sea uno de estos recursos nos asegura, al menos, un peque&#241;o &#8220;reset&#8221; diario para nuestra salud integral.</p>
+
+      </div>
+      <div class="post-cta-box">
+        <p>&#191;Quer&#233;s aprender a reconocer cu&#225;ndo tu sistema nervioso necesita un reset y qu&#233; herramientas funcionan para vos? Lo trabajamos en consulta.</p>
+        <a href="#" class="btn-primary" onclick="closePost();openModal('consulta');return false;">Agend&#225; una consulta</a>
+      </div>
+    </div>
+  </article>
+
+
+  <article class="post-page" data-post="dinacharya">
+    <div class="post-hero" style="background:linear-gradient(135deg,#6a8aaa,#3a5a78);height:320px;margin-top:62px;"></div>
+    <div class="post-content">
+      <div class="post-meta"><span class="post-tag-inline">Rutinas &amp; h&#225;bitos</span><span class="post-read">9 min de lectura</span><span class="post-read">19 de julio, 2025</span></div>
+      <h1 class="post-title"><em>Dinacharya:</em> La rutina ayurv&#233;dica diaria</h1>
+      <div class="post-divider"></div>
+      <div class="post-body">
+
+        <p class="post-lead">En el Ayurveda, existe una herramienta poderosa y accesible para mantener el equilibrio: la <em>Dinacharya</em> o rutina diaria. No se trata de una lista de tareas r&#237;gidas para &#8220;cumplir&#8221;, sino de sintonizar nuestro reloj interno con el reloj d&#243;shico de la naturaleza.</p>
+
+        <p>La salud no es un evento aislado, sino una construcci&#243;n cotidiana. Aprender a navegar los momentos del d&#237;a seg&#250;n el predominio de las energ&#237;as (<em>Vata,</em> <em>Pitta</em> y <em>Kapha</em>) nos permite dejar de sobrevivir a la rutina para empezar a habitarla con vitalidad.</p>
+
+        <h2 class="post-h2">El despertar y la higiene de los sentidos</h2>
+
+        <p>Lo ideal es despertar antes de la salida del sol, durante el horario <em>Vata,</em> cuando la mente est&#225; naturalmente m&#225;s clara. Pero m&#225;s all&#225; de la hora exacta, lo crucial es c&#243;mo iniciamos el d&#237;a.</p>
+
+        <p>El Ayurveda pone especial &#233;nfasis en la limpieza de los sentidos, que son nuestro portal de contacto con el mundo:</p>
+
+        <div class="post-practicas">
+          <div class="post-practica">
+            <div class="post-practica-icono">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2C8 2 5 6 5 10c0 5 7 12 7 12s7-7 7-12c0-4-3-8-7-8z"/></svg>
+            </div>
+            <div class="post-practica-body">
+              <div class="post-practica-titulo">Limpieza de lengua</div>
+              <p>Al levantarnos, esa capa blanquecina (<em>Ama</em>) sobre la lengua son desechos que el cuerpo intent&#243; eliminar mientras dorm&#237;amos. Usar un limpialengua no solo elimina toxinas, sino que env&#237;a un mensaje de &#8220;encendido&#8221; a nuestros &#243;rganos internos.</p>
+            </div>
+          </div>
+          <div class="post-practica">
+            <div class="post-practica-icono">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 22V12"/><path d="M12 12C12 8 8 5 4 6c0 4 3 7 8 6"/><path d="M12 12c0-4 4-7 8-6 0 4-3 7-8 6"/></svg>
+            </div>
+            <div class="post-practica-body">
+              <div class="post-practica-titulo">Limpieza Nasal <em>(Neti)</em></div>
+              <p>La nariz es el umbral del cerebro. Mantener los senos paranasales limpios mejora la claridad mental y protege nuestra mucosa.</p>
+            </div>
+          </div>
+          <div class="post-practica">
+            <div class="post-practica-icono">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2v6"/><circle cx="12" cy="14" r="4"/><path d="M8 22h8"/><path d="M12 18v4"/></svg>
+            </div>
+            <div class="post-practica-body">
+              <div class="post-practica-titulo">Agua tibia en ayunas</div>
+              <p>Beber una o dos tazas de agua templada estimula el movimiento intestinal y lava el tracto gastrointestinal, prepar&#225;ndolo para el d&#237;a.</p>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="post-h2">El almuerzo como centro de gravedad</h2>
+
+        <p>Uno de los pilares que m&#225;s enfatizamos en el consultorio es el horario de las comidas. Seg&#250;n nuestro dise&#241;o biol&#243;gico, el mediod&#237;a (12:00&thinsp;hs) es cuando nuestro metabolismo est&#225; en su punto m&#225;ximo de rendimiento.</p>
+
+        <p>Es fundamental que el almuerzo sea la comida m&#225;s completa y nutritiva del d&#237;a. Si almorzamos muy tarde (por ejemplo, a las 15:00&thinsp;hs), nuestro fuego digestivo (<em>Agni</em>) ya ha disminuido, lo que favorece la pesadez y la acumulaci&#243;n de toxinas.</p>
+
+        <blockquote class="post-quote">&#8220;Respetar el ritmo del mediod&#237;a es una forma de resistencia ante la velocidad que nos impone el entorno.&#8221;</blockquote>
+
+        <h2 class="post-h2">El descanso y la cena temprana</h2>
+
+        <p>Para asegurar un sue&#241;o reparador y un proceso de desintoxicaci&#243;n nocturna eficiente, la cena deber&#237;a ser ligera y temprana (idealmente entre las 19:30 y las 20:30&thinsp;hs). Esto le da tiempo al cuerpo para procesar el alimento antes de ir a dormir, evitando que la energ&#237;a del descanso se malgaste en una digesti&#243;n pesada.</p>
+
+        <div class="post-ritmos">
+          <div class="post-ritmo"><span class="post-ritmo-hora">Amanecer</span><span class="post-ritmo-desc">Despertar &middot; Higiene de sentidos &middot; Agua tibia</span></div>
+          <div class="post-ritmo"><span class="post-ritmo-hora">12:00 hs</span><span class="post-ritmo-desc">Almuerzo principal &middot; <em>Agni</em> en su punto m&#225;ximo</span></div>
+          <div class="post-ritmo"><span class="post-ritmo-hora">19:30&#8211;20:30 hs</span><span class="post-ritmo-desc">Cena ligera y temprana</span></div>
+          <div class="post-ritmo"><span class="post-ritmo-hora">Antes de dormir</span><span class="post-ritmo-desc">Masaje de pies &middot; Rutina de cierre</span></div>
+        </div>
+
+        <p class="post-closing">Todo acercamiento a los ritmos naturales es v&#225;lido. La <em>Dinacharya</em> no busca la perfecci&#243;n, sino la presencia: elegir peque&#241;as pr&#225;cticas que nos devuelvan la calma y nos recuerden qui&#233;nes somos en medio del caos diario.</p>
+
+      </div>
+      <div class="post-cta-box">
+        <p>&#191;Quer&#233;s dise&#241;ar una <em>Dinacharya</em> adaptada a tu constituci&#243;n y estilo de vida? Lo construimos juntas en consulta.</p>
+        <a href="#" class="btn-primary" onclick="closePost();openModal('consulta');return false;">Agend&#225; una consulta</a>
+      </div>
     </div>
   </article>
 
