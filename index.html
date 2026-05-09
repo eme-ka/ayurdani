@@ -40,18 +40,19 @@
   nav.scrolled .nav-cta { color:var(--terra) !important; }
 
   /* HERO */
-  #home { min-height:100vh; position:relative; display:flex; align-items:center; overflow:hidden; }
-  .hero-img { position:absolute; inset:0; background:#9ea9bb; }
-  .hero-img::after { display:none; }
-  .hero-content { position:relative; z-index:2; max-width:660px; padding:120px 60px 80px; }
-  .hero-eyebrow { font-size:0.68rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--navy); margin-bottom:22px; opacity:0; transform:translateY(20px); animation:fadeUp 0.8s 0.3s forwards; }
-  .hero-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2.8rem,5.5vw,5rem); font-weight:300; line-height:1.1; color:var(--navy); margin-bottom:22px; opacity:0; transform:translateY(30px); animation:fadeUp 0.9s 0.5s forwards; }
+  #home { min-height:100vh; background:var(--slate); display:grid; grid-template-columns:1fr 1fr; overflow:hidden; position:relative; }
+  .hero-left { display:flex; flex-direction:column; justify-content:center; padding:120px 56px 80px 60px; position:relative; z-index:2; }
+  .hero-right { position:relative; overflow:hidden; }
+  .hero-photo { width:100%; height:100%; object-fit:cover; object-position:center 12%; display:block; }
+  .hero-photo-overlay { position:absolute; inset:0; background:linear-gradient(to right, var(--slate) 0%, transparent 20%); }
+  .hero-eyebrow { font-size:0.68rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--navy); opacity:0.7; margin-bottom:22px; animation:fadeUp 0.8s 0.3s both; }
+  .hero-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2.4rem,4vw,4.2rem); font-weight:300; line-height:1.1; color:var(--navy); margin-bottom:22px; animation:fadeUp 0.9s 0.5s both; }
   .hero-title em { font-style:italic; color:white; }
-  .hero-subtitle { font-size:0.98rem; font-weight:300; line-height:1.8; color:var(--navy); max-width:480px; opacity:0.75; margin-bottom:44px; opacity:0; transform:translateY(20px); animation:fadeUp 0.8s 0.7s forwards; }
-  .hero-cta { display:flex; gap:13px; flex-wrap:wrap; opacity:0; transform:translateY(20px); animation:fadeUp 0.8s 0.9s forwards; }
-  .scroll-hint { position:absolute; bottom:38px; left:60px; display:flex; align-items:center; gap:12px; color:rgba(46,50,64,0.5); font-size:0.64rem; letter-spacing:0.18em; text-transform:uppercase; opacity:0; animation:fadeUp 0.8s 1.4s forwards; }
-  .scroll-line { width:40px; height:1px; background:rgba(200,208,219,0.3); position:relative; overflow:hidden; }
-  .scroll-line::after { content:''; position:absolute; left:-100%; top:0; width:100%; height:100%; background:var(--slate-light); animation:scanLine 2s 1.5s infinite; }
+  .hero-subtitle { font-size:0.96rem; font-weight:300; line-height:1.8; color:rgba(46,50,64,0.72); max-width:420px; margin-bottom:40px; animation:fadeUp 0.8s 0.7s both; }
+  .hero-cta { display:flex; gap:13px; flex-wrap:wrap; animation:fadeUp 0.8s 0.9s both; }
+  .scroll-hint { position:absolute; bottom:32px; left:60px; display:flex; align-items:center; gap:12px; color:rgba(46,50,64,0.45); font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; animation:fadeUp 0.8s 1.4s both; }
+  .scroll-line { width:40px; height:1px; background:rgba(46,50,64,0.2); position:relative; overflow:hidden; }
+  .scroll-line::after { content:''; position:absolute; left:-100%; top:0; width:100%; height:100%; background:var(--navy); animation:scanLine 2s 1.5s infinite; }
 
   /* BUTTONS */
   .btn-primary { display:inline-flex; align-items:center; gap:9px; padding:14px 28px; background:var(--slate-dark); color:white; text-decoration:none; font-size:0.77rem; letter-spacing:0.12em; text-transform:uppercase; transition:background 0.3s,transform 0.25s; border:none; cursor:pointer; }
@@ -229,7 +230,10 @@
   @media (max-width:900px) {
     nav,nav.scrolled { padding:14px 24px; }
     section { padding:66px 24px; }
-    .hero-content { padding:100px 24px 60px; }
+    #home { grid-template-columns:1fr; }
+    .hero-left { padding:52px 24px 60px; order:2; }
+    .hero-right { order:1; height:70vw; max-height:460px; min-height:280px; }
+    .hero-photo-overlay { background:linear-gradient(to bottom, transparent 55%, var(--slate) 100%); }
     .que-es-grid,.sobre-grid { grid-template-columns:1fr; gap:36px; }
     .que-es-imgs { grid-template-columns:1fr 1fr; }
     .servicios-grid { grid-template-columns:1fr 1fr; }
@@ -265,8 +269,7 @@
 
 <!-- HERO -->
 <section id="home">
-  <div class="hero-img"></div>
-  <div class="hero-content">
+  <div class="hero-left">
     <p class="hero-eyebrow">Medicina Integrativa &middot; Ayurveda &middot; GinecoEcolog&#237;a</p>
     <h1 class="hero-title">Te acompa&#241;o a cuidar<br>tu salud de manera<br><em>integral y acorde a vos</em></h1>
     <p class="hero-subtitle">Un modelo de salud que combina medicina convencional con el milenario conocimiento Ayurveda, para un cuidado global, personalizado y preventivo.</p>
@@ -275,8 +278,12 @@
       <a href="#" class="btn-secondary" onclick="openModal('espera')">Lista de espera &middot; Depuraci&#243;n</a>
       <a href="#que-es" class="btn-ghost">&#8595; Ver m&#225;s</a>
     </div>
+    <div class="scroll-hint"><div class="scroll-line"></div>Descubr&#237; m&#225;s</div>
   </div>
-  <div class="scroll-hint"><div class="scroll-line"></div>Descubr&#237; m&#225;s</div>
+  <div class="hero-right">
+    <img src="img/perfil.jpg" alt="Dra. Daniela Gayoso" class="hero-photo">
+    <div class="hero-photo-overlay"></div>
+  </div>
 </section>
 
 <!-- STRIP INGREDIENTES -->
