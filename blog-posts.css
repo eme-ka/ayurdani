@@ -43,12 +43,18 @@ nav {
 .article-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; color: var(--slate-dark); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; }
 .article-title { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; margin-bottom: 16px; color: var(--navy); }
 .article-body p, .article-body li { font-size: 1rem; color: var(--text-mid); margin-bottom: 16px; }
-.article-body h2 { margin-top: 24px; margin-bottom: 10px; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--navy); }
-.article-body blockquote { margin: 24px 0; padding: 16px 20px; background: var(--slate-pale); border-left: 4px solid var(--slate); font-style: italic; color: var(--slate-dark); }
+.article-body p.lead { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; line-height: 1.6; color: var(--navy); margin-bottom: 22px; }
+.article-body h2 { margin-top: 30px; margin-bottom: 10px; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--navy); }
+.article-body .term { font-style: italic; color: var(--slate-dark); font-weight: 500; }
+.article-body blockquote { position: relative; margin: 26px 0; padding: 18px 22px 18px 46px; background: var(--slate-pale); border-left: 4px solid var(--slate); font-style: italic; font-size: 1.05rem; color: var(--slate-dark); }
+.article-body blockquote::before { content: "\201C"; position: absolute; left: 14px; top: 8px; font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; line-height: 1; color: var(--slate); font-style: normal; }
 .article-body ul, .article-body ol { margin: 0 0 16px 20px; }
-.pillars { display: grid; gap: 14px; grid-template-columns: repeat(3, 1fr); margin: 18px 0 24px; }
-.pillar { background: var(--slate-pale); padding: 16px; border-top: 2px solid var(--slate); }
+.pillars { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); margin: 18px 0 24px; }
+.pillar { background: var(--slate-pale); padding: 16px; border-top: 2px solid var(--slate); border-radius: 0 0 6px 6px; }
 .pillar strong { color: var(--navy); display: block; margin-bottom: 6px; }
+.signal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin: 18px 0 24px; padding: 0; list-style: none; }
+.article-body .signal-grid li { background: var(--cream); padding: 14px 16px; border-radius: 8px; border-left: 3px solid var(--slate); margin-bottom: 0; }
+.article-body .signal-grid li strong { color: var(--navy); display: block; margin-bottom: 3px; }
 .cta-box { margin-top: 28px; padding: 22px; background: var(--cream); border-left: 4px solid var(--slate); }
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 18px; border-radius: 999px; font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; margin-right: 10px; margin-top: 10px; }
 .btn-primary { background: var(--slate-dark); color: white; }
